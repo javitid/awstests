@@ -5,8 +5,8 @@
   <option *ngFor="let questionary of QUESTIONARIES" [value]="questionary">{{questionary}}</option>
 </select>
 
-<div *ngFor="let question of questions">
-    <h2>{{question.question_plain}}</h2>
+<div *ngFor="let question of questions; let index = index">
+    <h2>{{index+1}}. {{question.question_plain}}</h2>
 
     <table>
         <tbody>
