@@ -1,0 +1,18 @@
+<app-header></app-header>
+
+<label for="questionaryName">Select a questionary: </label>
+<select name="questionaryName" id="questionaryName" (change)="getSelectedQuestionary($event)">
+  <option *ngFor="let questionary of QUESTIONARIES" [value]="questionary">{{questionary}}</option>
+</select>
+
+<div *ngFor="let question of questions">
+    <h2>{{question.question_plain}}</h2>
+
+    <table>
+        <tbody>
+            <tr *ngFor="let option of question.prompt.answers">
+                <td [innerHTML]=option></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
