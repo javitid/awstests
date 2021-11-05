@@ -20,6 +20,7 @@ $white: #fff;
 
 .navigation ul {
     left: 0;
+    padding-left: 0;
     position: absolute;
     top: 0;
     width: 100%;
@@ -88,7 +89,7 @@ $white: #fff;
     content: '';
     height: 50px;
     position: absolute;
-    right: 50px;
+    right: 10px;
     top: -50px;
     width: 50px;
 }
@@ -102,6 +103,6 @@ $white: #fff;
     content: '';
     height: 50px;
     position: absolute;
-    right: 50px;
+    right: 10px;
     width: 50px;
 }
