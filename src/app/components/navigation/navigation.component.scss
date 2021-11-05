@@ -60,13 +60,13 @@ $white: #fff;
     display: block;
     height: 60px;
     min-width: 60px;
-    line-height: 70px;
     position: relative;
     text-align: center;
 }
 
-.navigation ul li a .icon {
-    font-size: 1.75em;
+.navigation ul li a .icon img {
+    height: 40px;
+    padding: 10px 0;
 }
 
 .navigation ul li a .title {

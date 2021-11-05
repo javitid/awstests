@@ -1,3 +1,9 @@
+:host {
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: 2fr 1fr;
+}
+
 .topbar {
     align-items: center;
     display: flex;
@@ -5,4 +11,14 @@
     justify-content: space-between;
     padding: 0 10px;
     width: 100%;
+}
+
+.toggle {
+    cursor: pointer;
+    font-size: 2.5em;
+    width: 60px;
+}
+
+.icon img {
+    height: 40px;
 }
