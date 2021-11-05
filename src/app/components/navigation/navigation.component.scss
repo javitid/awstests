@@ -1,0 +1,107 @@
+$black1: #222;
+$black2: #999;
+$blue: #287bff;
+$grey: #f5f5f5;
+$white: #fff;
+
+.navigation {
+    background: $blue;
+    border-left: 10px solid $blue;
+    height: 100%;
+    overflow: hidden;
+    position: fixed;
+    transition: 0.5s;
+    width: 300px;
+}
+
+.navigation.active {
+    width: 80px;
+}
+
+.navigation ul {
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+
+.navigation ul li {
+    border-bottom-left-radius: 30px;
+    border-top-left-radius: 30px;
+    list-style: none;
+    position: relative;
+    width: 100%;
+}
+
+.navigation ul li:hover,
+.navigation ul li.hovered {
+    background: $white;
+}
+
+.navigation ul li:nth-child(1) {
+    margin-bottom: 40px;
+    pointer-events: none;
+}
+
+.navigation ul li a {
+    color: $white;
+    display: flex;
+    position: relative;
+    text-decoration: none;
+    width: 100%;
+}
+
+.navigation ul li:hover a,
+.navigation ul li.hovered a {
+    color: $blue;
+}
+
+.navigation ul li a .icon {
+    display: block;
+    height: 60px;
+    min-width: 60px;
+    line-height: 70px;
+    position: relative;
+    text-align: center;
+}
+
+.navigation ul li a .icon {
+    font-size: 1.75em;
+}
+
+.navigation ul li a .title {
+    display: block;
+    height: 60px;
+    line-height: 60px;
+    padding: 0 10px;
+    position: relative;
+    text-align: center;
+    white-space: nowrap;
+}
+
+/* curve outside */
+.navigation ul li:hover a::before,
+.navigation ul li.hovered a::before {
+    background: transparent;
+    border-radius: 50%;
+    box-shadow: 35px 35px 0 10px $white;
+    content: '';
+    height: 50px;
+    position: absolute;
+    right: 50px;
+    top: -50px;
+    width: 50px;
+}
+
+.navigation ul li:hover a::after,
+.navigation ul li.hovered a::after {
+    background: transparent;
+    border-radius: 50%;
+    bottom: -50px;
+    box-shadow: 35px -35px 0 10px $white;
+    content: '';
+    height: 50px;
+    position: absolute;
+    right: 50px;
+    width: 50px;
+}

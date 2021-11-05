@@ -1,0 +1,26 @@
+<div class="navigation">
+    <ul>
+        <li>
+            <a href="#">
+                <span class="icon"></span>
+                <span class="title">AWS</span>
+            </a>
+        </li>
+        <li [class.hovered]="hover.questions"
+            (mouseover)="hover.questions=true"
+            (mouseout)="hover.questions=false">
+            <a href="#">
+                <span class="icon"></span>
+                <span class="title">Questions</span>
+            </a>
+        </li>
+        <li [class.hovered]="hover.settings"
+            (mouseover)="hover.settings=true"
+            (mouseout)="hover.settings=false">
+            <a href="#">
+                <span class="icon"></span>
+                <span class="title">Settings</span>
+            </a>
+        </li>
+    </ul>
+</div>

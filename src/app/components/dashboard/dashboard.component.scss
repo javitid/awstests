@@ -1,0 +1,20 @@
+$white: #fff;
+
+:host {
+    width: 100%;
+}
+
+.main {
+    background: $white;
+    left: 300px;
+    min-height: 100vh;
+    padding-left: 15px;
+    position: absolute;
+    transition: 0.5s;
+    width: calc(100% - 300px);
+}
+
+.main.active {
+    left: 80px;
+    width: calc(100% - 80px);
+}

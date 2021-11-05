@@ -1,18 +1,16 @@
-<app-header></app-header>
+<app-navigation></app-navigation>
 
-<label for="questionaryName">Select a questionary: </label>
-<select name="questionaryName" id="questionaryName" (change)="getSelectedQuestionary($event)">
-  <option *ngFor="let questionary of QUESTIONARIES" [value]="questionary">{{questionary}}</option>
-</select>
+<div class="main">
+    <div class="topbar"><app-header></app-header></div>
 
-<div *ngFor="let question of questions; let index = index">
-    <h2>{{index+1}}. {{question.question_plain}}</h2>
+    <div class="details">
+        <label for="questionaryName">Select a questionary: </label>
+        <select name="questionaryName" id="questionaryName" (change)="getSelectedQuestionary($event)">
+        <option *ngFor="let questionary of QUESTIONARIES" [value]="questionary">{{questionary}}</option>
+        </select>
 
-    <table>
-        <tbody>
-            <tr *ngFor="let option of question.prompt.answers">
-                <td [innerHTML]=option></td>
-            </tr>
-        </tbody>
-    </table>
+        <div *ngFor="let question of questions; let index = index">
+            <app-question [questionNumber]="index+1" [question]="question" ></app-question>
+        </div>
+    </div>
 </div>
