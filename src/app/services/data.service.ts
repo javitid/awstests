@@ -1,25 +1,31 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse} from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { shareReplay } from 'rxjs/operators';
 
 import { Questions } from '../interfaces/Question';
+
+var questions: Observable<Questions>;
+var questionary = new Map();
+const URL_GET_QUESTIONARY: string = "https://eu-central-1.aws.webhooks.mongodb-realm.com/api/client/v2.0/app/aws_tests-keftk/service/getQuestions/incoming_webhook/webhook0?questionary=";
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
   httpError?: HttpErrorResponse;
-  getQuestionsUrl: string = "https://eu-central-1.aws.webhooks.mongodb-realm.com/api/client/v2.0/app/aws_tests-keftk/service/getQuestions/incoming_webhook/webhook0?questionary=";
   
   constructor(private http: HttpClient) { }
 
-  // getQuestions(): Observable<Questions>{
-  //   const questions = this.http.get<Questions>(this.getQuestionsUrl);
-  //   return questions;
-  // }
-
   getQuestions(questionaryName?: string): Observable<Questions>{
-    const questions = this.http.get<Questions>(this.getQuestionsUrl + questionaryName);
+    if (questionary.has(questionaryName)) {
+      questions = questionary.get(questionaryName);
+    } else {
+      questions = this.http.get<Questions>(URL_GET_QUESTIONARY + questionaryName).pipe(shareReplay(1));
+      questionary.set(questionaryName, questions);
+    }
+
+    console.log(questionary);
     return questions;
   }
 
