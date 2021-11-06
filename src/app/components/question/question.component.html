@@ -14,7 +14,13 @@
             </td>
         </tr>
         <tr>
-            <td><button (click)="toggleResult()">Result</button></td>
+            <td>
+                <button (click)="toggleResult()">Result</button>
+                <button (click)="toggleExplanation()">Explanation</button>
+            </td>
+        </tr>
+        <tr>
+            <td *ngIf="showExplanation" [innerHtml]="question?.prompt?.explanation"></td>
         </tr>
     </tbody>
 </table>

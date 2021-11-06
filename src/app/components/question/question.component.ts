@@ -16,6 +16,7 @@ export class QuestionComponent{
 
   public ASSESSMENT_TYPE = ASSESSMENT_TYPE;
   public showResponse = false;
+  public showExplanation = false;
 
   public isAssessmentType(assessment_type: string): boolean {
     return this.question?.assessment_type === assessment_type;
@@ -32,6 +33,10 @@ export class QuestionComponent{
 
   public toggleResult(): void {
     this.showResponse = !this.showResponse;
+  }
+
+  public toggleExplanation(): void {
+    this.showExplanation = !this.showExplanation;
   }
 
   private mapResponse(index: number): string {
