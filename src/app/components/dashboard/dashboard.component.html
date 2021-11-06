@@ -1,10 +1,7 @@
 <app-navigation></app-navigation>
 
 <div class="main">
-    <div class="topbar">
-        <app-header (questionaryChangeEvent)="questionaryChangeEvent($event)"></app-header>
-    </div>
-
+    <app-header (questionaryChangeEvent)="questionaryChangeEvent($event)"></app-header>
     <div class="details">
         <div *ngFor="let question of questions; let index = index">
             <app-question [questionNumber]="index+1" [question]="question" ></app-question>

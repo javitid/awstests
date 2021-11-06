@@ -11,10 +11,10 @@ $white: #fff;
     padding-left: 15px;
     position: absolute;
     transition: 0.5s;
-    width: calc(100% - 300px);
+    width: calc(100% - 315px);
 }
 
 .main.active {
     left: 80px;
-    width: calc(100% - 80px);
+    width: calc(100% - 95px);
 }

@@ -1,22 +1,18 @@
-:host {
-    display: grid;
-    grid-gap: 10px;
-    grid-template-columns: 2fr 1fr;
-}
-
 .topbar {
     align-items: center;
     display: flex;
     height: 60px;
     justify-content: space-between;
-    padding: 0 10px;
     width: 100%;
+}
+
+.topbar:last-child {
+    text-align: end;
 }
 
 .toggle {
     cursor: pointer;
     font-size: 2.5em;
-    width: 60px;
 }
 
 .icon img {
