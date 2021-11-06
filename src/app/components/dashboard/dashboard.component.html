@@ -1,14 +1,11 @@
 <app-navigation></app-navigation>
 
 <div class="main">
-    <div class="topbar"><app-header></app-header></div>
+    <div class="topbar">
+        <app-header (questionaryChangeEvent)="questionaryChangeEvent($event)"></app-header>
+    </div>
 
     <div class="details">
-        <label for="questionaryName">Select a questionary: </label>
-        <select name="questionaryName" id="questionaryName" (change)="getSelectedQuestionary($event)">
-        <option *ngFor="let questionary of QUESTIONARIES" [value]="questionary">{{questionary}}</option>
-        </select>
-
         <div *ngFor="let question of questions; let index = index">
             <app-question [questionNumber]="index+1" [question]="question" ></app-question>
         </div>

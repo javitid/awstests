@@ -3,6 +3,7 @@ import { HttpClient, HttpErrorResponse} from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { shareReplay } from 'rxjs/operators';
 
+import { QUESTIONARIES } from '../config/constants';
 import { Questions } from '../interfaces/Question';
 
 var questions: Observable<Questions>;
@@ -17,15 +18,13 @@ export class DataService {
   
   constructor(private http: HttpClient) { }
 
-  getQuestions(questionaryName?: string): Observable<Questions>{
+  getQuestions(questionaryName: string = QUESTIONARIES[0]): Observable<Questions>{
     if (questionary.has(questionaryName)) {
       questions = questionary.get(questionaryName);
     } else {
       questions = this.http.get<Questions>(URL_GET_QUESTIONARY + questionaryName).pipe(shareReplay(1));
       questionary.set(questionaryName, questions);
     }
-
-    console.log(questionary);
     return questions;
   }
 

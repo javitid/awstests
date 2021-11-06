@@ -5,4 +5,9 @@ export const QUESTIONARIES = [
     'practitioner4', 
     'practitioner5', 
     'practitioner6'
-]
+];
+
+export const ASSESSMENT_TYPE = [
+    'multiple-choice',
+    'multi-select'
+];

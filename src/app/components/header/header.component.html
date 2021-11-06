@@ -5,4 +5,10 @@
     <div class="headerTitle">
         <h1>AWS Practitioner Questions</h1>
     </div>
+    <div class="dropdown">
+        <label for="questionaryName">Select a questionary: </label>
+        <select name="questionaryName" id="questionaryName" (change)="getSelectedQuestionary($event)">
+        <option *ngFor="let questionary of QUESTIONARIES" [value]="questionary">{{questionary}}</option>
+        </select>
+    </div>
 </div>
