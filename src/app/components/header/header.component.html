@@ -7,7 +7,7 @@
     </div>
     <div class="dropdown">
         <label for="questionaryName">Select a questionary: </label>
-        <select name="questionaryName" id="questionaryName" (change)="getSelectedQuestionary($event)">
+        <select [(ngModel)]="questionaryName" name="questionaryName" id="questionaryName" (change)="getSelectedQuestionary($event)">
         <option *ngFor="let questionary of QUESTIONARIES" [value]="questionary">{{questionary}}</option>
         </select>
     </div>

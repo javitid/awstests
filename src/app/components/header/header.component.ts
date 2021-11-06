@@ -13,14 +13,15 @@ export class HeaderComponent implements OnInit {
   @Output() questionaryChangeEvent = new EventEmitter<Question[]>();
 
   public QUESTIONARIES = QUESTIONARIES;
-  public selectedQuestionary: string = QUESTIONARIES[0];
+  public questionaryName: string = QUESTIONARIES[0];
 
   constructor(
     private _dataService: DataService,
   ) { }
 
   public ngOnInit(): void {
-    this._dataService.getQuestions(this.selectedQuestionary).subscribe ( result => {
+    console.log(this.questionaryName);
+    this._dataService.getQuestions(this.questionaryName).subscribe ( result => {
       this.questionaryChangeEvent.emit(result.questions);
     });
   }
@@ -34,8 +35,7 @@ export class HeaderComponent implements OnInit {
   }
 
   public getSelectedQuestionary(event: any) {
-    this.selectedQuestionary = event.target.value;
-    this._dataService.getQuestions(this.selectedQuestionary).subscribe ( result => {
+    this._dataService.getQuestions(event.target.value).subscribe ( result => {
       this.questionaryChangeEvent.emit(result.questions);
     });
   }
