@@ -1,4 +1,4 @@
-$white: #fff;
+@import '../../config/colors';
 
 :host {
     width: 100%;
@@ -11,10 +11,10 @@ $white: #fff;
     padding-left: 15px;
     position: absolute;
     transition: 0.5s;
-    width: calc(100% - 315px);
+    width: calc(100% - 330px);
 }
 
 .main.active {
     left: 80px;
-    width: calc(100% - 95px);
+    width: calc(100% - 110px);
 }

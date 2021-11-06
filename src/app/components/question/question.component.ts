@@ -1,5 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
+import { ASSESSMENT_TYPE } from '../../config/constants';
 import { Question } from '../../interfaces/Question';
 
 @Component({
@@ -7,15 +8,19 @@ import { Question } from '../../interfaces/Question';
   templateUrl: './question.component.html',
   styleUrls: ['./question.component.scss']
 })
-export class QuestionComponent implements OnInit {
+export class QuestionComponent{
   @Input()
   public questionNumber?: number;
   @Input()
   public question?: Question;
 
-  constructor() { }
+  public ASSESSMENT_TYPE = ASSESSMENT_TYPE;
 
-  ngOnInit(): void {
+  public isAssessmentType(assessment_type: string): boolean {
+    return this.question?.assessment_type === assessment_type;
   }
 
+  public getOptionText(option: string): string {
+    return option.replace('<p>','').replace('</p>','');
+  }
 }

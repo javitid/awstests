@@ -2,8 +2,15 @@
 
 <table>
     <tbody>
-        <tr *ngFor="let option of question?.prompt?.answers">
-            <td [innerHTML]=option></td>
+        <tr *ngFor="let option of question?.prompt?.answers, let index = index">
+            <td *ngIf="isAssessmentType(ASSESSMENT_TYPE.RADIO)">
+                <input type="radio" id="{{question?.id}}" name="{{question?.id}}" value="{{index}}">
+                <label for="{{question?.id}}">{{getOptionText(option)}}</label>
+            </td>
+            <td *ngIf="isAssessmentType(ASSESSMENT_TYPE.CHECKBOX)">
+                <input type="checkbox" id="{{question?.id}}" name="{{question?.id}}" value="{{index}}">
+                <label for="{{question?.id}}">{{getOptionText(option)}}</label>
+            </td>
         </tr>
     </tbody>
 </table>

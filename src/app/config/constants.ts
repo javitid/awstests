@@ -7,7 +7,7 @@ export const QUESTIONARIES = [
     'practitioner6'
 ];
 
-export const ASSESSMENT_TYPE = [
-    'multiple-choice',
-    'multi-select'
-];
+export const ASSESSMENT_TYPE = {
+    RADIO: 'multiple-choice',
+    CHECKBOX: 'multi-select'
+};
