@@ -20,7 +20,6 @@ export class HeaderComponent implements OnInit {
   ) { }
 
   public ngOnInit(): void {
-    console.log(this.questionaryName);
     this._dataService.getQuestions(this.questionaryName).subscribe ( result => {
       this.questionaryChangeEvent.emit(result.questions);
     });

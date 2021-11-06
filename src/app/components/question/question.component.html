@@ -2,7 +2,8 @@
 
 <table>
     <tbody>
-        <tr *ngFor="let option of question?.prompt?.answers, let index = index">
+        <tr *ngFor="let option of question?.prompt?.answers, let index = index"
+        [class.correct-answer]="showResponse && isResponseOfIndex(index)">
             <td *ngIf="isAssessmentType(ASSESSMENT_TYPE.RADIO)">
                 <input type="radio" id="{{question?.id}}" name="{{question?.id}}" value="{{index}}">
                 <label for="{{question?.id}}">{{getOptionText(option)}}</label>
@@ -11,6 +12,9 @@
                 <input type="checkbox" id="{{question?.id}}" name="{{question?.id}}" value="{{index}}">
                 <label for="{{question?.id}}">{{getOptionText(option)}}</label>
             </td>
+        </tr>
+        <tr>
+            <td><button (click)="toggleResult()">Result</button></td>
         </tr>
     </tbody>
 </table>
