@@ -102,3 +102,28 @@
     right: 10px;
     width: 50px;
 }
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .navigation {
+        left: -300px;
+    }
+
+    .navigation.active {
+        left: 0;
+        width: 80px;
+    }
+}
+
+@media (max-width: 480px) {
+    .navigation {
+        left: -100%;
+        width: 100%;
+        z-index: 1000;
+    }
+
+    .navigation.active {
+        left: 0;
+        width: 100%;
+    }
+}

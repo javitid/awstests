@@ -35,3 +35,10 @@
     height: 40px;
     border-radius: 10px;
 }
+
+/* Responsive design */
+@media (max-width: 480px) {
+    .toggle {
+        z-index: 1000;
+    }
+}
