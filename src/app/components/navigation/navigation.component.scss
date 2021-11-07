@@ -117,7 +117,7 @@
 
 @media (max-width: 480px) {
     .navigation {
-        left: -100%;
+        left: calc(-100% - 10px);
         width: 100%;
         z-index: 1000;
     }
