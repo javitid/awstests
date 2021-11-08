@@ -6,4 +6,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./navigation.component.scss']
 })
 export class NavigationComponent {
+  public activeLink($event: any): void {
+    // Add hovered class in selected menu element
+    let list = document.querySelectorAll('.navigation li');
+    list.forEach(item => {
+      item.classList.remove('hovered');
+      $event.srcElement.parentElement.classList.add('hovered');
+    })
+  }
 }

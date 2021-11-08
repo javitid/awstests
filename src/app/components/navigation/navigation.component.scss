@@ -30,7 +30,8 @@
     width: 100%;
 }
 
-.navigation ul li:hover {
+.navigation ul li:hover,
+.navigation ul li.hovered {
     background: $white;
 }
 
@@ -47,7 +48,8 @@
     width: 100%;
 }
 
-.navigation ul li:hover a {
+.navigation ul li:hover a,
+.navigation ul li.hovered a {
     color: $blue;
 }
 
@@ -75,7 +77,8 @@
 }
 
 /* curve outside */
-.navigation ul li:hover a::before {
+.navigation ul li:hover a::before,
+.navigation ul li.hovered a::before {
     background: transparent;
     border-radius: 50%;
     box-shadow: 35px 35px 0 10px $white;
@@ -87,7 +90,8 @@
     width: 50px;
 }
 
-.navigation ul li:hover a::after {
+.navigation ul li:hover a::after,
+.navigation ul li.hovered a::after {
     background: transparent;
     border-radius: 50%;
     bottom: -50px;
