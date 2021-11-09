@@ -38,6 +38,7 @@ export class HeaderComponent implements OnInit {
 
   public getSelectedQuestionary(event: any): void {
     this._dataService.getQuestions(event.target.value).subscribe ( result => {
+      this.filterName = SECTION[0];
       this.questionaryChangeEvent.emit(result.questions);
     });
   }
