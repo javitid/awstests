@@ -4,7 +4,13 @@
     <app-header (questionaryChangeEvent)="questionaryChangeEvent($event)" (filter)="filterChangeEvent($event)"></app-header>
     <div class="details">
         <div *ngFor="let question of questions; let index = index">
-            <app-question [questionNumber]="index+1" [question]="question" ></app-question>
+            <form [formGroup]="questionsForm" >
+                <app-question 
+                    [questionNumber]="index+1"
+                    [question]="question"
+                    [questionControlName]="question?.id?.$numberInt?.toString()">
+                </app-question>
+            </form>
         </div>
     </div>
 </div>

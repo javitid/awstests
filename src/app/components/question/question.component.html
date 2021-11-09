@@ -5,12 +5,12 @@
         <tr *ngFor="let option of question?.prompt?.answers, let index = index"
         [class.correct-answer]="showResponse && isResponseOfIndex(index)">
             <td *ngIf="isAssessmentType(ASSESSMENT_TYPE.RADIO)">
-                <input type="radio" id="{{question?.id}}" name="{{question?.id}}" value="{{index}}">
-                <label for="{{question?.id}}">{{getOptionText(option)}}</label>
+                <input type="radio" formControlName="{{questionControlName}}" value="{{index}}">
+                <label for="{{questionControlName}}">{{getOptionText(option)}}</label>
             </td>
             <td *ngIf="isAssessmentType(ASSESSMENT_TYPE.CHECKBOX)">
-                <input type="checkbox" id="{{question?.id}}" name="{{question?.id}}" value="{{index}}">
-                <label for="{{question?.id}}">{{getOptionText(option)}}</label>
+                <input type="checkbox" formControlName="{{questionControlName}}" value="{{index}}">
+                <label for="{{questionControlName}}">{{getOptionText(option)}}</label>
             </td>
         </tr>
         <tr>

@@ -15,7 +15,7 @@ export class HeaderComponent implements OnInit {
 
   public QUESTIONARIES = QUESTIONARIES;
   public SECTION = SECTION;
-  public filterName = '';
+  public filterName = 'all';
   public questionaryName: string = QUESTIONARIES[0];
 
   constructor(

@@ -1,22 +1,39 @@
 import { Component, Input } from '@angular/core';
+import { ControlContainer, FormGroup, FormGroupDirective } from '@angular/forms';
 
 import { ASSESSMENT_TYPE } from '../../config/constants';
 import { Question } from '../../interfaces/Question';
+import { DataService } from '../../services/data.service';
 
 @Component({
   selector: 'app-question',
   templateUrl: './question.component.html',
-  styleUrls: ['./question.component.scss']
+  styleUrls: ['./question.component.scss'],
+  viewProviders: [
+    {
+      provide: ControlContainer,
+      useExisting: FormGroupDirective,
+    }
+  ]
 })
 export class QuestionComponent{
   @Input()
   public questionNumber?: number;
   @Input()
   public question?: Question;
+  @Input()
+  public questionControlName?: string;
 
   public ASSESSMENT_TYPE = ASSESSMENT_TYPE;
   public showResponse = false;
   public showExplanation = false;
+  public questionsForm: FormGroup;
+
+  constructor(
+    private _dataService: DataService,
+  ) { 
+    this.questionsForm = this._dataService.getQuestionsForm();
+  }
 
   public isAssessmentType(assessment_type: string): boolean {
     return this.question?.assessment_type === assessment_type;
