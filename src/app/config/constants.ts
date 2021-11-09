@@ -1,3 +1,8 @@
+export const ASSESSMENT_TYPE = {
+    RADIO: 'multiple-choice',
+    CHECKBOX: 'multi-select'
+};
+
 export const QUESTIONARIES = [
     'practitioner1',   
     'practitioner2', 
@@ -13,7 +18,19 @@ export const QUESTIONARIES = [
     'architectA6'
 ];
 
-export const ASSESSMENT_TYPE = {
-    RADIO: 'multiple-choice',
-    CHECKBOX: 'multi-select'
-};
+export const SECTION = [
+    'all',
+    'AWS Best Practices & Design Principles',
+    'Cloud Computing Benefits',
+    'AWS Cost Management',
+    'AWS Database',
+    'AWS Global Infrastructure',
+    'AWS Management & Governance',
+    'AWS Migration & Transfer',
+    'AWS Networking & Content Delivery',
+    'AWS Pricing Models',
+    'AWS Security, Identity, & Compliance',
+    'AWS Shared Responsibility Model',
+    'AWS Storage',
+    'AWS Support'
+]

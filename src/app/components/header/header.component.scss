@@ -23,10 +23,12 @@
 }
 
 .title,
-.dropdown {
+.dropdown,
+.filter {
     color: $blue;
 }
 
+#filterName,
 #questionaryName {
     background-color: $white;
     border-color: $blue;
@@ -40,5 +42,11 @@
 @media (max-width: 480px) {
     .toggle {
         z-index: 1000;
+    }
+
+    .topbar {
+        align-items: flex-start;
+        flex-direction: column;
+        padding-bottom: 150px;
     }
 }

@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
-import { QUESTIONARIES } from '../../config/constants';
+import { QUESTIONARIES, SECTION } from '../../config/constants';
 import { Question } from '../../interfaces/Question';
 import { DataService } from '../../services/data.service';
 
@@ -11,8 +11,11 @@ import { DataService } from '../../services/data.service';
 })
 export class HeaderComponent implements OnInit {
   @Output() questionaryChangeEvent = new EventEmitter<Question[]>();
+  @Output() filter = new EventEmitter<string>();
 
   public QUESTIONARIES = QUESTIONARIES;
+  public SECTION = SECTION;
+  public filterName = '';
   public questionaryName: string = QUESTIONARIES[0];
 
   constructor(
@@ -33,9 +36,13 @@ export class HeaderComponent implements OnInit {
     main?.classList.toggle('active');
   }
 
-  public getSelectedQuestionary(event: any) {
+  public getSelectedQuestionary(event: any): void {
     this._dataService.getQuestions(event.target.value).subscribe ( result => {
       this.questionaryChangeEvent.emit(result.questions);
     });
+  }
+
+  public setFilter(event: any): void {
+    this.filter.emit(event.target.value);
   }
 }
