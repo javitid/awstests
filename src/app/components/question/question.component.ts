@@ -22,7 +22,7 @@ export class QuestionComponent{
   @Input()
   public question?: Question;
   @Input()
-  public questionControlName?: string;
+  public questionControlName: string = '';
 
   public ASSESSMENT_TYPE = ASSESSMENT_TYPE;
   public showResponse = false;
@@ -39,9 +39,15 @@ export class QuestionComponent{
     return this.question?.assessment_type === assessment_type;
   }
 
-  public isResponseOfIndex(index: number): boolean {
+  public isCorrectResponse(index: number): boolean {
     let response = this.mapResponse(index);
     return !!this.question?.correct_response.find(element => element === response);
+  }
+
+  public isWrongResponse(index: number): boolean {
+    return !this.isCorrectResponse(index) &&
+           this.questionsForm.controls[this.questionControlName].value == index &&
+           this.isAssessmentType(ASSESSMENT_TYPE.RADIO);
   }
 
   public getOptionText(option: string): string {

@@ -8,7 +8,7 @@
                 <app-question 
                     [questionNumber]="index+1"
                     [question]="question"
-                    [questionControlName]="question?.id?.$numberInt?.toString()">
+                    [questionControlName]="question.id.$numberInt.toString()">
                 </app-question>
             </form>
         </div>
