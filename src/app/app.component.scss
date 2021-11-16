@@ -1,0 +1,41 @@
+@import './config/colors';
+
+:host {
+    width: 100%;
+}
+
+.main {
+    background: $white;
+    left: 300px;
+    min-height: 100vh;
+    padding-left: 15px;
+    position: absolute;
+    transition: 0.5s;
+    width: calc(100% - 330px);
+}
+
+.main.active {
+    left: 80px;
+    width: calc(100% - 110px);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .main {
+        left: 0;
+        width: calc(100% - 30px);
+    }
+
+    .main.active {
+        left: 80px;
+        width: calc(100% - 110px);
+    }
+}
+
+@media (max-width: 480px) {
+    .main.active ::ng-deep .toggle {
+        left: initial;
+        position: fixed;
+        right: 10px;
+    }
+}

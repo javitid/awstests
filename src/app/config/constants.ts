@@ -1,3 +1,8 @@
+export const PATH = {
+    DASHBOARD: 'dashboard',
+    SETTINGS: 'settings'
+}
+
 export const ASSESSMENT_TYPE = {
     RADIO: 'multiple-choice',
     CHECKBOX: 'multi-select'

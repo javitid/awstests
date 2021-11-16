@@ -9,6 +9,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { HeaderComponent } from './components/header/header.component';
 import { QuestionComponent } from './components/question/question.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
+import { SettingsComponent } from './components/settings/settings.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { NavigationComponent } from './components/navigation/navigation.componen
     DashboardComponent,
     HeaderComponent,
     QuestionComponent,
-    NavigationComponent
+    NavigationComponent,
+    SettingsComponent
   ],
   imports: [
     AppRoutingModule,

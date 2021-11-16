@@ -5,16 +5,19 @@
     <div class="title">
         <h1>AWS</h1>
     </div>
-    <div class="filter">
+    <div class="filter" *ngIf="isFilter">
         <label for="filterName">Section filter: </label>
         <select [(ngModel)]="filterName" name="filterName" id="filterName" (change)="setFilter($event)">
         <option *ngFor="let section of SECTION" [value]="section">{{section}}</option>
         </select>
     </div>
-    <div class="dropdown">
+    <div class="dropdown" *ngIf="isQuestionary">
         <label for="questionaryName">Questionary: </label>
         <select [(ngModel)]="questionaryName" name="questionaryName" id="questionaryName" (change)="getSelectedQuestionary($event)">
         <option *ngFor="let questionary of QUESTIONARIES" [value]="questionary">{{questionary}}</option>
         </select>
+    </div>
+    <div class="title" *ngIf="!isFilter && !isQuestionary">
+        <h1>Settings</h1>
     </div>
 </div>
