@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 import { QUESTIONARIES, SECTION } from '../../config/constants';
 import { Question } from '../../interfaces/Question';
@@ -10,6 +10,8 @@ import { DataService } from '../../services/data.service';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
+  @Input() isFilter: boolean = true;
+  @Input() isQuestionary: boolean = true;
   @Output() questionaryChangeEvent = new EventEmitter<Question[]>();
   @Output() filter = new EventEmitter<string>();
 

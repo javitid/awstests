@@ -7,11 +7,11 @@
     overflow: hidden;
     position: fixed;
     transition: 0.5s;
-    width: 300px;
+    width: 290px;
 }
 
 .navigation.active {
-    width: 80px;
+    width: 70px;
 }
 
 .navigation ul {
@@ -85,7 +85,7 @@
     content: '';
     height: 50px;
     position: absolute;
-    right: 10px;
+    right: 0;
     top: -50px;
     width: 50px;
 }
@@ -99,7 +99,7 @@
     content: '';
     height: 50px;
     position: absolute;
-    right: 10px;
+    right: 0;
     width: 50px;
 }
 

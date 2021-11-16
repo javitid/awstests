@@ -1,20 +1,19 @@
 <div class="navigation">
     <ul>
         <li>
-            <a href="#">
+            <a>
                 <span class="icon"><img src="assets/logo-amazon.svg"></span>
                 <span class="title">AWS</span>
             </a>
         </li>
-        <li [class.hovered]="true"
-            (mouseover)="activeLink($event)">
-            <a href="#">
+        <li (click)="activeLink($event)" [ngClass]="{'hovered': dashboardRLRef.isActive}">
+            <a [routerLink]="PATH.DASHBOARD" routerLinkActive="active" #dashboardRLRef="routerLinkActive">
                 <span class="icon"><img src="assets/reader-outline.svg"></span>
                 <span class="title">Questions</span>
             </a>
         </li>
-        <li (mouseover)="activeLink($event)">
-            <a href="#">
+        <li (click)="activeLink($event)" [ngClass]="{'hovered': settingsRLRef.isActive}">
+            <a [routerLink]="PATH.SETTINGS" routerLinkActive="active" #settingsRLRef="routerLinkActive">
                 <span class="icon"><img src="assets/settings-outline.svg"></span>
                 <span class="title">Settings</span>
             </a>
