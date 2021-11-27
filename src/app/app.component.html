@@ -1,4 +1,6 @@
-<app-navigation></app-navigation>
-<div class="main">
-    <router-outlet></router-outlet>
+<div class="wrapper">
+    <app-navigation (themeChangeEvent)="onSetTheme($event)"></app-navigation>
+    <div class="main">
+        <router-outlet></router-outlet>
+    </div>
 </div>

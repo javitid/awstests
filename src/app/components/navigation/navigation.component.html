@@ -8,15 +8,20 @@
         </li>
         <li (click)="activeLink($event)" [ngClass]="{'hovered': dashboardRLRef.isActive}">
             <a [routerLink]="PATH.DASHBOARD" routerLinkActive="active" #dashboardRLRef="routerLinkActive">
-                <span class="icon"><img src="assets/reader-outline.svg"></span>
+                <mat-icon>format_list_numbered</mat-icon>
                 <span class="title">Questions</span>
             </a>
         </li>
         <li (click)="activeLink($event)" [ngClass]="{'hovered': settingsRLRef.isActive}">
             <a [routerLink]="PATH.SETTINGS" routerLinkActive="active" #settingsRLRef="routerLinkActive">
-                <span class="icon"><img src="assets/settings-outline.svg"></span>
+                <mat-icon>settings</mat-icon>
                 <span class="title">Settings</span>
             </a>
         </li>
     </ul>
+    <mat-slide-toggle
+        (change)="onSetTheme()"
+        [(ngModel)]="isThemeSelected"
+        class="theme-switch">&nbsp;&nbsp;&nbsp;Theme
+    </mat-slide-toggle>
 </div>

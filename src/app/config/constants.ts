@@ -45,3 +45,8 @@ export const SECTION = [
     'AWS Storage',
     'AWS Support'
 ]
+
+export const THEMES = {
+    DARK: 'dark-theme',
+    LIGHT: 'light-theme',
+}

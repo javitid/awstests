@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, HostBinding, Output } from '@angular/core';
 
-import { PATH } from '../../config/constants';
+import { PATH, THEMES } from '../../config/constants';
 
 const HOVERED = 'hovered';
 
@@ -10,7 +10,11 @@ const HOVERED = 'hovered';
   styleUrls: ['./navigation.component.scss']
 })
 export class NavigationComponent {
+  @Output() themeChangeEvent = new EventEmitter<string>();
+  @HostBinding('class') _componentCssClass: any;
+
   public PATH = PATH;
+  public isThemeSelected = false;
 
   public activeLink($event: any): void {
     // Add hovered class in selected menu element
@@ -30,5 +34,9 @@ export class NavigationComponent {
         $event.srcElement.parentElement.parentElement.parentElement.classList.add(HOVERED);
         break;
     }
+  }
+
+  public onSetTheme() {
+    this.themeChangeEvent.emit(this.isThemeSelected ? THEMES.DARK : THEMES.LIGHT)
   }
 }
