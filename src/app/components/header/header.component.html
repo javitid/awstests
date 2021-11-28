@@ -5,18 +5,21 @@
     <div class="title">
         <h1>AWS</h1>
     </div>
-    <div class="filter" *ngIf="isFilter">
-        <label for="filterName">Section filter: </label>
-        <select [(ngModel)]="filterName" name="filterName" id="filterName" (change)="setFilter($event)">
-        <option *ngFor="let section of SECTION" [value]="section">{{section}}</option>
-        </select>
-    </div>
-    <div class="dropdown" *ngIf="isQuestionary">
-        <label for="questionaryName">Questionary: </label>
-        <select [(ngModel)]="questionaryName" name="questionaryName" id="questionaryName" (change)="getSelectedQuestionary($event)">
-        <option *ngFor="let questionary of QUESTIONARIES" [value]="questionary">{{questionary}}</option>
-        </select>
-    </div>
+
+    <mat-form-field appearance="fill" *ngIf="isFilter" color="primary">
+        <mat-label>Section filter</mat-label>
+        <mat-select [(value)]="filterName" (selectionChange)="setFilter($event)">
+            <mat-option *ngFor="let section of SECTION" [value]="section">{{section}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" *ngIf="isQuestionary" color="primary">
+        <mat-label>Questionary</mat-label>
+        <mat-select [(value)]="questionaryName" (selectionChange)="getSelectedQuestionary($event)">
+            <mat-option *ngFor="let questionary of QUESTIONARIES" [value]="questionary">{{questionary}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+
     <div class="title" *ngIf="!isFilter && !isQuestionary">
         <h1>Settings</h1>
     </div>

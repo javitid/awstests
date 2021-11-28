@@ -2,6 +2,7 @@
 
 .topbar {
     align-items: center;
+    background-color: $blue;
     display: flex;
     height: 60px;
     justify-content: space-between;
@@ -22,20 +23,8 @@ mat-icon {
     width: 40px;
 }
 
-.title,
-.dropdown,
-.filter {
-    color: $blue;
-}
-
-#filterName,
-#questionaryName {
-    background-color: $white;
-    border-color: $blue;
-    color: $blue;
-    font-weight: 700;
-    height: 40px;
-    border-radius: 10px;
+.title {
+    color: $white;
 }
 
 /* Responsive design */
@@ -45,8 +34,9 @@ mat-icon {
     }
 
     .topbar {
-        align-items: flex-start;
+        align-items: initial;
         flex-direction: column;
+        height: 125px;
         padding-bottom: 150px;
     }
 }
