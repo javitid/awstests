@@ -16,6 +16,7 @@ import { QuestionComponent } from './components/question/question.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { SettingsComponent } from './components/settings/settings.component';
 
+import { HelperService } from './services/helper.service';
 import { ThemeService } from './services/theme.service';
 
 @NgModule({
@@ -41,7 +42,7 @@ import { ThemeService } from './services/theme.service';
     MatSelectModule,
     MatSlideToggleModule
   ],
-  providers: [ThemeService],
+  providers: [HelperService, ThemeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

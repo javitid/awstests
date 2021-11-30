@@ -1,6 +1,7 @@
 import { Component, EventEmitter, HostBinding, Output } from '@angular/core';
 
 import { PATH, THEMES } from '../../config/constants';
+import { HelperService } from '../../services/helper.service';
 
 const HOVERED = 'hovered';
 
@@ -15,6 +16,8 @@ export class NavigationComponent {
 
   public PATH = PATH;
   public isThemeSelected = false;
+
+  constructor(private _helperService: HelperService) {}
 
   public activeLink($event: any): void {
     // Add hovered class in selected menu element
@@ -34,9 +37,20 @@ export class NavigationComponent {
         $event.srcElement.parentElement.parentElement.parentElement.classList.add(HOVERED);
         break;
     }
+
+    if (this._helperService.isSmallScreen){this.toggle();}
   }
 
   public onSetTheme() {
-    this.themeChangeEvent.emit(this.isThemeSelected ? THEMES.DARK : THEMES.LIGHT)
+    this.themeChangeEvent.emit(this.isThemeSelected ? THEMES.DARK : THEMES.LIGHT);
+    if (this._helperService.isSmallScreen){this.toggle();}
+  }
+
+  private toggle(): void {
+    let navigation = document.querySelector('.navigation');
+    let main = document.querySelector('.main');
+
+    navigation?.classList.toggle('active');
+    main?.classList.toggle('active');
   }
 }
