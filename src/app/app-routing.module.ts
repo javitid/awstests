@@ -16,10 +16,12 @@ const routes: Routes = [
       {
         path: PATH.DASHBOARD,
         component: DashboardComponent,
+        data: {animation: 'isLeft'}
       },
       {
         path: PATH.SETTINGS,
         component: SettingsComponent,
+        data: {animation: 'isRight'}
       },
     ],
   },
