@@ -9,6 +9,8 @@ import {
     keyframes,
 } from '@angular/animations';
 
+const optional = { optional: true };
+
 export const fader = trigger('routeAnimations', [
     transition('* <=> *', [
       // Set a default  style for enter and leave
@@ -44,7 +46,6 @@ export const horizontalSlider = trigger('routeAnimations', [
 ]);
 
 function slideTo(direction: string) {
-    const optional = { optional: true };
     return [
         query(':enter, :leave', [
             style({
@@ -82,7 +83,6 @@ export const transformer = trigger('routeAnimations', [
 ]);
 
 function transformTo({x = 100, y = 0, rotate = 0}) {
-    const optional = { optional: true };
     return [
         query(':enter, :leave', [
             style({
@@ -114,7 +114,7 @@ export const stepper = trigger('routeAnimations', [
             left: 0,
             width: '100%',
             }),
-        ]),
+        ], optional),
         group([
             query(':enter', [
             animate('2000ms ease', keyframes([
@@ -122,14 +122,14 @@ export const stepper = trigger('routeAnimations', [
                 style({ transform: 'scale(0.5) translateX(25%)', offset: 0.3 }),
                 style({ transform: 'scale(1) translateX(0%)', offset: 1 }),
             ])),
-        ]),
+        ], optional),
         query(':leave', [
             animate('2000ms ease', keyframes([
                 style({ transform: 'scale(1)', offset: 0 }),
                 style({ transform: 'scale(0.5) translateX(-25%) rotate(0)', offset: 0.35 }),
                 style({ opacity: 0, transform: 'translateX(-50%) rotate(-180deg) scale(6)', offset: 1 }),
             ])),
-        ])
+        ], optional)
       ]),
     ])
 ]);
