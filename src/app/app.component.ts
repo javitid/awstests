@@ -13,8 +13,8 @@ import { ThemeService } from "./services/theme.service";
     // fader,
     // horizontalSlider
     // slider,
-    stepper,
-    // transformer,
+    // stepper,
+    transformer,
   ]
 })
 export class AppComponent {

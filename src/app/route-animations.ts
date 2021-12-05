@@ -22,11 +22,11 @@ export const fader = trigger('routeAnimations', [
           opacity: 0,
           transform: 'scale(0) translateY(100%)',
         }),
-      ]),
+      ], optional),
       // Animate the new page in
       query(':enter', [
         animate('600ms ease', style({ opacity: 1, transform: 'scale(1) translateY(0)' })),
-      ])
+      ], optional)
     ]),
 ]);
 
