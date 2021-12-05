@@ -1,7 +1,11 @@
-.details {
-    padding: 15px 0 0 15px;
+.form-wrapper {
+    max-width: 400px;
 }
 
-button + button {
-    margin-left: 15px;
+.form-input {
+    display: block;
+}
+
+.settings-wrapper {
+    padding: 15px 0 0 15px;
 }
