@@ -20,6 +20,8 @@ import { SettingsComponent } from './components/settings/settings.component';
 
 import { HelperService } from './services/helper.service';
 import { ThemeService } from './services/theme.service';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -44,7 +46,13 @@ import { ThemeService } from './services/theme.service';
     MatIconModule,
     MatInputModule,
     MatSelectModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production,
+      // Register the ServiceWorker as soon as the app is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
+    })
   ],
   providers: [HelperService, ThemeService],
   bootstrap: [AppComponent]
