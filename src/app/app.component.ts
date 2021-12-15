@@ -1,9 +1,12 @@
-import { Component, HostBinding } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component, HostBinding, OnInit } from '@angular/core';
+import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
+import { filter } from 'rxjs/operators';
 
 import { fader, horizontalSlider, slider, stepper, transformer } from './route-animations';
 
 import { ThemeService } from "./services/theme.service";
+
+declare let gtag: Function;
 
 @Component({
   selector: 'app-root',
@@ -17,11 +20,19 @@ import { ThemeService } from "./services/theme.service";
     transformer,
   ]
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   @HostBinding('attr.class') _componentCssClass: any;
   title = 'awstests';
+  private GOOGLE_ANALYTICS_ID = 'G-PTNVG3SZ8W';
 
-  constructor(private _themeService: ThemeService) {}
+  constructor(
+    private _router: Router,
+    private _themeService: ThemeService,
+  ) {}
+
+  ngOnInit() {
+    this.setUpAnalytics();
+  }
 
   public onSetTheme(theme: string) {
     this._componentCssClass = theme;
@@ -30,5 +41,16 @@ export class AppComponent {
 
   public prepareRoute(outlet: RouterOutlet) {
     return outlet && outlet.activatedRouteData && outlet.activatedRouteData['animation'];
+  }
+
+  public setUpAnalytics() {
+    this._router.events.pipe(filter(event => event instanceof NavigationEnd))
+      .subscribe((event) => {
+          gtag('config', this.GOOGLE_ANALYTICS_ID,
+              {
+                  page_path: (event as NavigationEnd).urlAfterRedirects
+              }
+          );
+      });
   }
 }
