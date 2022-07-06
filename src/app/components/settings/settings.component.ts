@@ -20,7 +20,6 @@ export class SettingsComponent {
       firstName: this.firstName,
       lastName: this.lastName,
     });
-    console.log(this.settingsForm);
   }
 
   public hasError = (controlName: string, errorName: string) =>{
