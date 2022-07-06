@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1657066409251,
+  "timestamp": 1657066468849,
   "index": "/index.html",
   "assetGroups": [
     {
@@ -54,7 +54,7 @@
     "/assets/icons/icon-96x96.png": "3914125a4b445bf111c5627875fc190f560daa41",
     "/assets/logo-amazon.svg": "b02af6efe86b821b3aa6ba9e0bef6a127ca8b126",
     "/favicon.ico": "22f6a4a3bcaafafb0254e0f2fa4ceb89e505e8b2",
-    "/index.html": "aad387b7e5b9e3e2c78e984b2f449e2da4843e34",
+    "/index.html": "246512cf8c24c430e730b8b32d36f3d65c61315c",
     "/main.3ffb857a00d65d95.js": "c9f56dbbf6c158a998d9936a67df14e5695a23e6",
     "/manifest.webmanifest": "c713bed8e2eef122b212da2c3a2028c0f612b96a",
     "/polyfills.8fe00c6f002c9677.js": "a190e8af89c09be9b46640b810fa0af874767cd2",
