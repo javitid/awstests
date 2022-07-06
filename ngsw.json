@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1657067773017,
+  "timestamp": 1657068772426,
   "index": "/index.html",
   "assetGroups": [
     {
@@ -13,11 +13,11 @@
       "urls": [
         "/favicon.ico",
         "/index.html",
-        "/main.02eb9409206b5863.js",
+        "/main.d2487e9efc3524db.js",
         "/manifest.webmanifest",
-        "/polyfills.8fe00c6f002c9677.js",
-        "/runtime.8bdc33801bc9be86.js",
-        "/styles.121b9b2d4d2a83d4.css"
+        "/polyfills.4088e42848caa50c.js",
+        "/runtime.dc855f98c23957e1.js",
+        "/styles.967f9fac16288ec6.css"
       ],
       "patterns": []
     },
@@ -54,12 +54,12 @@
     "/assets/icons/icon-96x96.png": "3914125a4b445bf111c5627875fc190f560daa41",
     "/assets/logo-amazon.svg": "b02af6efe86b821b3aa6ba9e0bef6a127ca8b126",
     "/favicon.ico": "22f6a4a3bcaafafb0254e0f2fa4ceb89e505e8b2",
-    "/index.html": "5103a1f89319d472a3b5be92ce9efdf774f3ad5f",
-    "/main.02eb9409206b5863.js": "6ae86937ba78909b3b5ba57a25e63a20b4c9cd6d",
+    "/index.html": "3ec92053556ad2729047a3ac9a40a1a56202b7c2",
+    "/main.d2487e9efc3524db.js": "a67b430b8253de43e6ac98faac13b444440dd3f2",
     "/manifest.webmanifest": "c713bed8e2eef122b212da2c3a2028c0f612b96a",
-    "/polyfills.8fe00c6f002c9677.js": "a190e8af89c09be9b46640b810fa0af874767cd2",
-    "/runtime.8bdc33801bc9be86.js": "b9c73cd35de308da0019b26ad2da1a012b3db12e",
-    "/styles.121b9b2d4d2a83d4.css": "b4dd84d99ca68b4a36e92ae5d399d904a74e52e4"
+    "/polyfills.4088e42848caa50c.js": "32566afe8c752c68e20819d2c20fd1cd8632465c",
+    "/runtime.dc855f98c23957e1.js": "1e348a49ad9455ca83b6f2d09e422cdc3a4851fd",
+    "/styles.967f9fac16288ec6.css": "5a5b5bf03fbe4b9cf9434e287f9869cc58287349"
   },
   "navigationUrls": [
     {
