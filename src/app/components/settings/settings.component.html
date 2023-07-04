@@ -2,7 +2,7 @@
 
 <div class="settings-wrapper">
     <form [formGroup]="settingsForm" class="form-wrapper">
-        <mat-form-field appearance="standard" class="form-input">
+        <mat-form-field class="form-input">
             <mat-label>First Name</mat-label>
             <input matInput [formControl]="firstName">
             <mat-icon matSuffix>person</mat-icon>
@@ -11,7 +11,7 @@
             <mat-error *ngIf="hasError('firstName', 'maxlength')">Length exceed {{maxLength}}</mat-error>
         </mat-form-field>
 
-        <mat-form-field appearance="standard" class="form-input">
+        <mat-form-field class="form-input">
             <mat-label>Last Name</mat-label>
             <input matInput [formControl]="lastName">
             <mat-icon matSuffix>person_outline</mat-icon>
