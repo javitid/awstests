@@ -6,14 +6,14 @@
         <h1>AWS</h1>
     </div>
 
-    <mat-form-field appearance="fill" *ngIf="isFilter" color="primary">
+    <mat-form-field appearance="fill" *ngIf="isFilter" color="primary" class="header--dropdown">
         <mat-label>Section filter</mat-label>
         <mat-select [(value)]="filterName" (selectionChange)="setFilter($event)">
             <mat-option *ngFor="let section of SECTION" [value]="section">{{section}}</mat-option>
         </mat-select>
     </mat-form-field>
 
-    <mat-form-field appearance="fill" *ngIf="isQuestionary" color="primary">
+    <mat-form-field appearance="fill" *ngIf="isQuestionary" color="primary" class="header--dropdown">
         <mat-label>Questionary</mat-label>
         <mat-select [(value)]="questionaryName" (selectionChange)="getSelectedQuestionary($event)">
             <mat-option *ngFor="let questionary of QUESTIONARIES" [value]="questionary">{{questionary}}</mat-option>

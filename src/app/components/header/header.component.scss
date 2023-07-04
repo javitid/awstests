@@ -1,42 +1,47 @@
-@import '../../config/colors';
+@import "../../config/colors";
 
 .topbar {
-    align-items: center;
-    background-color: $blue;
-    display: flex;
-    height: 60px;
-    justify-content: space-between;
-    width: 100%;
+  align-items: center;
+  background-color: $blue;
+  display: flex;
+  height: 60px;
+  justify-content: space-between;
+  width: 100%;
 }
 
 .topbar:last-child {
-    text-align: end;
-    padding-right: 15px;
+  text-align: end;
+  padding-right: 15px;
 }
 
 .toggle {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 mat-icon {
-    font-size: 40px;
-    width: 40px;
+  font-size: 40px;
+  height: auto;
+  width: 40px;
 }
 
 .title {
-    color: $white;
+  color: $white;
+}
+
+.header--dropdown {
+  padding-top: 20px;
 }
 
 /* Responsive design */
 @media (max-width: 480px) {
-    .toggle {
-        z-index: 1000;
-    }
+  .toggle {
+    z-index: 1000;
+  }
 
-    .topbar {
-        align-items: initial;
-        flex-direction: column;
-        height: 125px;
-        padding-bottom: 150px;
-    }
+  .topbar {
+    align-items: initial;
+    flex-direction: column;
+    height: 125px;
+    padding-bottom: 150px;
+  }
 }

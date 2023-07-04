@@ -1,142 +1,143 @@
-@import '../../config/colors';
+@import "../../config/colors";
 
 .navigation {
-    background: $blue;
-    border-left: 10px solid $blue;
-    height: 100%;
-    overflow: hidden;
-    position: fixed;
-    transition: 0.5s;
-    width: 290px;
+  background: $blue;
+  border-left: 10px solid $blue;
+  height: 100%;
+  overflow: hidden;
+  position: fixed;
+  transition: 0.5s;
+  width: 290px;
 }
 
 .navigation.active {
-    width: 70px;
+  width: 70px;
 }
 
 .navigation ul {
-    left: 0;
-    padding-left: 0;
-    position: absolute;
-    top: 0;
-    width: 100%;
+  left: 0;
+  padding-left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
 }
 
 .navigation ul li {
-    border-bottom-left-radius: 30px;
-    border-top-left-radius: 30px;
-    list-style: none;
-    position: relative;
-    width: 100%;
+  border-bottom-left-radius: 30px;
+  border-top-left-radius: 30px;
+  list-style: none;
+  position: relative;
+  width: 100%;
 }
 
 .navigation ul li:hover,
 .navigation ul li.hovered {
-    background: $white;
+  background: $white;
 }
 
 .navigation ul li:nth-child(1) {
-    margin-bottom: 40px;
-    pointer-events: none;
+  margin-bottom: 40px;
+  pointer-events: none;
 }
 
 .navigation ul li a {
-    color: $white;
-    display: flex;
-    position: relative;
-    text-decoration: none;
-    width: 100%;
+  color: $white;
+  display: flex;
+  position: relative;
+  text-decoration: none;
+  width: 100%;
 }
 
 .navigation ul li:hover a,
 .navigation ul li.hovered a {
-    color: $blue;
+  color: $blue;
 }
 
 .navigation ul li a .icon {
-    display: block;
-    height: 60px;
-    min-width: 60px;
-    position: relative;
-    text-align: center;
+  display: block;
+  height: 60px;
+  min-width: 60px;
+  position: relative;
+  text-align: center;
 }
 
 .navigation ul li a .icon img {
-    filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(106deg) brightness(102%) contrast(102%);
-    height: 40px;
-    padding: 10px 0;
+  filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(106deg)
+    brightness(102%) contrast(102%);
+  height: 40px;
+  padding: 10px 0;
 }
 
 mat-icon {
-    font-size: 40px;
-    padding: 10px 30px 10px 10px;
+  font-size: 40px;
+  padding: 10px 50px 15px 10px;
 }
 
 .navigation ul li a .title {
-    display: block;
-    height: 60px;
-    line-height: 60px;
-    padding: 0 10px;
-    position: relative;
-    text-align: center;
-    white-space: nowrap;
+  display: block;
+  height: 60px;
+  line-height: 60px;
+  padding: 0 10px;
+  position: relative;
+  text-align: center;
+  white-space: nowrap;
 }
 
 /* curve outside */
 .navigation ul li:hover a::before,
 .navigation ul li.hovered a::before {
-    background: transparent;
-    border-radius: 50%;
-    box-shadow: 35px 35px 0 10px $white;
-    content: '';
-    height: 50px;
-    position: absolute;
-    right: 0;
-    top: -50px;
-    width: 50px;
+  background: transparent;
+  border-radius: 50%;
+  box-shadow: 35px 35px 0 10px $white;
+  content: "";
+  height: 50px;
+  position: absolute;
+  right: 0;
+  top: -50px;
+  width: 50px;
 }
 
 .navigation ul li:hover a::after,
 .navigation ul li.hovered a::after {
-    background: transparent;
-    border-radius: 50%;
-    bottom: -50px;
-    box-shadow: 35px -35px 0 10px $white;
-    content: '';
-    height: 50px;
-    position: absolute;
-    right: 0;
-    width: 50px;
+  background: transparent;
+  border-radius: 50%;
+  bottom: -50px;
+  box-shadow: 35px -35px 0 10px $white;
+  content: "";
+  height: 50px;
+  position: absolute;
+  right: 0;
+  width: 50px;
 }
 
 .theme-switch {
-    bottom: 20px;
-    padding-left: 15px;
-    position: fixed;
-    color: $white;
+  bottom: 20px;
+  padding-left: 15px;
+  position: fixed;
+  color: $white;
 }
 
 /* Responsive design */
 @media (max-width: 768px) {
-    .navigation {
-        left: -300px;
-    }
+  .navigation {
+    left: -300px;
+  }
 
-    .navigation.active {
-        left: 0;
-        width: 80px;
-    }
+  .navigation.active {
+    left: 0;
+    width: 80px;
+  }
 }
 
 @media (max-width: 480px) {
-    .navigation {
-        left: calc(-100% - 10px);
-        width: 100%;
-        z-index: 1000;
-    }
+  .navigation {
+    left: calc(-100% - 10px);
+    width: 100%;
+    z-index: 1000;
+  }
 
-    .navigation.active {
-        left: 0;
-        width: 100%;
-    }
+  .navigation.active {
+    left: 0;
+    width: 100%;
+  }
 }

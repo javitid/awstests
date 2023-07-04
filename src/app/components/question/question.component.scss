@@ -1,25 +1,25 @@
-@import '../../config/colors';
+@import "../../config/colors";
 
 table tbody tr td label {
-    margin-left: 15px;
+  margin-left: 15px;
 }
 
 table {
-    width: 100%;
+  width: 100%;
 }
 
 .button-row {
-    padding-top: 10px;
+  padding-top: 10px;
 }
 
 button + button {
-    margin-left: 10px;
+  margin-left: 10px;
 }
 
 .correct-answer {
-    background: green;
+  background: green;
 }
 
 .wrong-answer {
-    background: red;
+  background: red;
 }
