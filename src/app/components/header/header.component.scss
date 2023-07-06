@@ -34,6 +34,10 @@ mat-icon {
 
 /* Responsive design */
 @media (max-width: 480px) {
+  .header--dropdown {
+    padding-top: 0;
+  }
+
   .toggle {
     z-index: 1000;
   }
