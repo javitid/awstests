@@ -45,11 +45,11 @@ $awstests-dark-theme: mat.define-dark-theme((
 @include mat.all-component-themes($awstests-light-theme);
 
 .light-theme {
-  @include mat.all-component-themes($awstests-light-theme);
+  @include mat.all-component-colors($awstests-light-theme);
 }
 
 .dark-theme {
-  @include mat.all-component-themes($awstests-dark-theme);
+  @include mat.all-component-colors($awstests-dark-theme);
 }
 
 body {
