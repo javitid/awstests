@@ -1,8 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+
+import { PATH } from './config/constants';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { SettingsComponent } from './components/settings/settings.component';
-import { PATH } from './config/constants';
+import { LoginComponent } from './components/login/login.component';
+import { LogoutComponent } from './components/logout/logout.component';
 
 const routes: Routes = [
   {
@@ -12,6 +15,14 @@ const routes: Routes = [
         path: '',
         pathMatch: 'full',
         redirectTo: PATH.DASHBOARD
+      },
+      {
+        path: PATH.LOGIN,
+        component: LoginComponent
+      },
+      {
+        path: PATH.LOGOUT,
+        component: LogoutComponent
       },
       {
         path: PATH.DASHBOARD,
@@ -26,7 +37,6 @@ const routes: Routes = [
     ],
   },
 ];
-
 
 @NgModule({
   imports: [RouterModule.forRoot(routes, {useHash: true})],

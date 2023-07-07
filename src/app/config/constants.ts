@@ -1,5 +1,7 @@
 export const PATH = {
     DASHBOARD: 'dashboard',
+    LOGIN: 'login',
+    LOGOUT: 'logout',
     SETTINGS: 'settings'
 }
 
