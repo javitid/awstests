@@ -31,6 +31,15 @@ export class LoginComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    // Show button when the user is already logged in and the path has changed
+    if(window.google) {
+      window.google.accounts.id.renderButton(
+        // @ts-ignore
+        document.getElementById('buttonDiv'),
+        { theme: 'outline', size: 'large', width: '100%' }
+      );
+    }
+
     // @ts-ignore
     window.onGoogleLibraryLoad = () => {
       // @ts-ignore
