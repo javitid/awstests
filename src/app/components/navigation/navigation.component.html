@@ -18,7 +18,7 @@
                 <span class="title">Settings</span>
             </a>
         </li>
-        <li (click)="activeLink($event)" [ngClass]="{'hovered': settingsRLRef.isActive}">
+        <!-- <li (click)="activeLink($event)" [ngClass]="{'hovered': settingsRLRef.isActive}">
             <a [routerLink]="PATH.LOGIN" routerLinkActive="active" #settingsRLRef="routerLinkActive">
                 <mat-icon>login</mat-icon>
                 <span class="title">Log In</span>
@@ -29,7 +29,7 @@
                 <mat-icon>logout</mat-icon>
                 <span class="title">Log Out</span>
             </a>
-        </li>
+        </li> -->
     </ul>
     <mat-slide-toggle
         (change)="onSetTheme()"
