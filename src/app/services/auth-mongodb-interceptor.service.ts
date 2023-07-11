@@ -28,8 +28,12 @@ export class AuthMongoDBInterceptorService implements HttpInterceptor {
       catchError((event: any) => {
         if(event.status === 401) {
           this.authService.saveToken('');
-          this.snackBar.open('Authentication token expired, reload the page', 'Close', {
+          const snackBarRef = this.snackBar.open('Authentication token expired', 'Click to reload', {
             duration: 10000,
+          });
+
+          snackBarRef.afterDismissed().subscribe(() => {
+            location.reload();
           });
         };
         return throwError(event);
