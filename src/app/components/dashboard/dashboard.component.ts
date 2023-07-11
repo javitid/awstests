@@ -28,7 +28,7 @@ export class DashboardComponent {
 
     // Add form control for each question to be able to get/set the question value
     this.questions.map((question: Question) => {
-      this.questionsForm.addControl(question.id.$numberInt.toString(), new FormControl())
+      this.questionsForm.addControl(question.id.toString(), new FormControl())
     });
   }
 

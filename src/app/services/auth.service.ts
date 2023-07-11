@@ -10,14 +10,14 @@ import { environment } from 'src/environments/environment';
 export class AuthService {
   private loginStatus = new BehaviorSubject<boolean>(this.loggedIn());
   private username = new BehaviorSubject<string>(
-    localStorage.getItem('username')!
+    sessionStorage.getItem('username')!
   );
   private path = environment.apiUrl;
 
   constructor( private httpClient: HttpClient ) {}
 
   public signOutExternal = () => {
-    localStorage.removeItem('token');
+    sessionStorage.removeItem('token');
     console.log('token deleted');
   };
 
@@ -74,15 +74,19 @@ export class AuthService {
   }
 
   saveToken(token: string) {
-    localStorage.setItem('token', token);
+    sessionStorage.setItem('token', token);
+  }
+
+  getToken(): string {
+    return sessionStorage.getItem('token') || '';
   }
 
   saveUsername(username: string) {
-    localStorage.setItem('username', username);
+    sessionStorage.setItem('username', username);
   }
 
   loggedIn(): boolean {
-    if (localStorage.getItem('token')) {
+    if (sessionStorage.getItem('token')) {
       return true;
     }
     return false;

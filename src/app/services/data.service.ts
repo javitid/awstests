@@ -10,7 +10,7 @@ import { Questions } from '../interfaces/Question';
 var questions: Observable<Questions>;
 var questionary = new Map();
 var questionsForm = new FormGroup({});
-const URL_GET_QUESTIONARY: string = "https://eu-central-1.aws.webhooks.mongodb-realm.com/api/client/v2.0/app/aws_tests-keftk/service/getQuestions/incoming_webhook/webhook0?questionary=";
+const URL_POST_QUESTIONARY = 'https://eu-west-2.aws.data.mongodb-api.com/app/data-iuwtk/endpoint/data/v1/action/find';
 
 @Injectable({
   providedIn: 'root'
@@ -24,7 +24,16 @@ export class DataService {
     if (questionary.has(questionaryName)) {
       questions = questionary.get(questionaryName);
     } else {
-      questions = this.http.get<Questions>(URL_GET_QUESTIONARY + questionaryName).pipe(shareReplay(1));
+      const requestHeaders = {
+        'Accept': 'application/json',
+      }
+
+      const requestBody = {
+        dataSource: 'Cluster0',
+        database: 'awstests',
+        collection: questionaryName
+    };
+      questions = this.http.post<Questions>(URL_POST_QUESTIONARY, requestBody, {headers: requestHeaders}).pipe(shareReplay(1));
       questionary.set(questionaryName, questions);
     }
     return questions;

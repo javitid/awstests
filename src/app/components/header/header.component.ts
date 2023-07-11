@@ -26,7 +26,7 @@ export class HeaderComponent implements OnInit {
 
   public ngOnInit(): void {
     this._dataService.getQuestions(this.questionaryName).subscribe ( result => {
-      this.questionaryChangeEvent.emit(result.questions);
+      this.questionaryChangeEvent.emit(result.documents);
     });
   }
 
@@ -41,7 +41,7 @@ export class HeaderComponent implements OnInit {
   public getSelectedQuestionary(event: any): void {
     this._dataService.getQuestions(event.value).subscribe ( result => {
       this.filterName = SECTION[0];
-      this.questionaryChangeEvent.emit(result.questions);
+      this.questionaryChangeEvent.emit(result.documents);
     });
   }
 

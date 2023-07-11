@@ -5,9 +5,7 @@ export interface Question {
     },
     assessment_type: string,
     correct_response: string[],
-    id: {
-        $numberInt: number
-    },
+    id: number,
     prompt: {
         answers: string[],
         explanation: string,
@@ -20,5 +18,5 @@ export interface Question {
 }
 
 export interface Questions {
-    questions: Question[]
+    documents: Question[]
 }

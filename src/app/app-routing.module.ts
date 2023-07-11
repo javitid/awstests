@@ -6,10 +6,12 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { SettingsComponent } from './components/settings/settings.component';
 import { LoginComponent } from './components/login/login.component';
 import { LogoutComponent } from './components/logout/logout.component';
+import { AuthMongoDBGuard } from './guards/auth-mongodb.guard';
 
 const routes: Routes = [
   {
     path: '',
+    canActivate: [AuthMongoDBGuard],
     children: [
       {
         path: '',
