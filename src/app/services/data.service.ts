@@ -7,9 +7,9 @@ import { shareReplay } from 'rxjs/operators';
 import { QUESTIONARIES } from '../config/constants';
 import { Questions } from '../interfaces/Question';
 
-var questions: Observable<Questions>;
-var questionary = new Map();
-var questionsForm = new FormGroup({});
+let questions: Observable<Questions>;
+let questionsForm = new FormGroup({});
+const questionary = new Map();
 const URL_POST_QUESTIONARY = 'https://eu-west-2.aws.data.mongodb-api.com/app/data-iuwtk/endpoint/data/v1/action/find';
 
 @Injectable({

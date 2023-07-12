@@ -10,8 +10,8 @@ import { DataService } from '../../services/data.service';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  @Input() isFilter: boolean = true;
-  @Input() isQuestionary: boolean = true;
+  @Input() isFilter = true;
+  @Input() isQuestionary = true;
   @Output() questionaryChangeEvent = new EventEmitter<Question[]>();
   @Output() filter = new EventEmitter<string>();
 
@@ -31,8 +31,8 @@ export class HeaderComponent implements OnInit {
   }
 
   public toggle(): void {
-    let navigation = document.querySelector('.navigation');
-    let main = document.querySelector('.main');
+    const navigation = document.querySelector('.navigation');
+    const main = document.querySelector('.main');
 
     navigation?.classList.toggle('active');
     main?.classList.toggle('active');

@@ -12,7 +12,7 @@ import { DataService } from '../../services/data.service';
 export class DashboardComponent {
   public allQuestions: Question[] = [];
   public questions: Question[] = [];
-  public filter: string = '';
+  public filter = '';
   public questionsForm: FormGroup;
 
   constructor(

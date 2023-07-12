@@ -7,7 +7,8 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "deploy": "gh-pages -d dist/awstests"
+    "deploy": "gh-pages -d dist/awstests",
+    "lint": "ng lint"
   },
   "private": true,
   "dependencies": {
@@ -30,10 +31,18 @@
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^15.2.9",
+    "@angular-eslint/builder": "15.2.1",
+    "@angular-eslint/eslint-plugin": "15.2.1",
+    "@angular-eslint/eslint-plugin-template": "15.2.1",
+    "@angular-eslint/schematics": "15.2.1",
+    "@angular-eslint/template-parser": "15.2.1",
     "@angular/cli": "^15.2.9",
     "@angular/compiler-cli": "15.2.0",
     "@types/jasmine": "~3.6.0",
     "@types/node": "16.11.7",
+    "@typescript-eslint/eslint-plugin": "5.48.2",
+    "@typescript-eslint/parser": "5.48.2",
+    "eslint": "^8.33.0",
     "gh-pages": "^5.0.0",
     "jasmine-core": "~3.8.0",
     "karma": "~6.3.4",

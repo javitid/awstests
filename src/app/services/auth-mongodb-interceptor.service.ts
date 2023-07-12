@@ -35,7 +35,7 @@ export class AuthMongoDBInterceptorService implements HttpInterceptor {
           snackBarRef.afterDismissed().subscribe(() => {
             location.reload();
           });
-        };
+        }
         return throwError(event);
       })
     );

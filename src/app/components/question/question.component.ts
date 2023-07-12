@@ -22,7 +22,7 @@ export class QuestionComponent{
   @Input()
   public question?: Question;
   @Input()
-  public questionControlName: string = '';
+  public questionControlName = '';
 
   public ASSESSMENT_TYPE = ASSESSMENT_TYPE;
   public showResponse = false;
@@ -40,7 +40,7 @@ export class QuestionComponent{
   }
 
   public isCorrectResponse(index: number): boolean {
-    let response = this.mapResponse(index);
+    const response = this.mapResponse(index);
     return !!this.question?.correct_response.find(element => element === response);
   }
 

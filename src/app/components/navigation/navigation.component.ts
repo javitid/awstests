@@ -21,7 +21,7 @@ export class NavigationComponent {
 
   public activeLink($event: any): void {
     // Add hovered class in selected menu element
-    let list = document.querySelectorAll('.navigation li');
+    const list = document.querySelectorAll('.navigation li');
     list.forEach(item => {
       item.classList.remove(HOVERED);
     });
@@ -47,8 +47,8 @@ export class NavigationComponent {
   }
 
   private toggle(): void {
-    let navigation = document.querySelector('.navigation');
-    let main = document.querySelector('.main');
+    const navigation = document.querySelector('.navigation');
+    const main = document.querySelector('.main');
 
     navigation?.classList.toggle('active');
     main?.classList.toggle('active');
