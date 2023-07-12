@@ -15,11 +15,6 @@ declare const FB: any;
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-  form = this.fb.group({
-    username: ['', Validators.email],
-    password: ['', Validators.required],
-  });
-
   private clientId = environment.clientId;
 
   constructor(
@@ -30,18 +25,21 @@ export class LoginComponent implements OnInit {
     private _snackBar: MatSnackBar
   ) {}
 
+  form = this.fb.group({
+    username: ['', Validators.email],
+    password: ['', Validators.required],
+  });
+
   ngOnInit(): void {
     // Show button when the user is already logged in and the path has changed
     if(window.google) {
       window.google.accounts.id.renderButton(
-        // @ts-ignore
-        document.getElementById('buttonDiv'),
-        { theme: 'outline', size: 'large', width: '100%' }
+        document.getElementById('buttonDiv') as HTMLElement,
+        { theme: 'outline', size: 'large' }
       );
     }
 
-    // @ts-ignore
-    window.onGoogleLibraryLoad = () => {
+    (window as any).onGoogleLibraryLoad = () => {
       // @ts-ignore
       google.accounts.id.initialize({
         client_id: this.clientId,
@@ -49,14 +47,14 @@ export class LoginComponent implements OnInit {
         auto_select: false,
         cancel_on_tap_outside: true,
       });
+
       // @ts-ignore
       google.accounts.id.renderButton(
-        // @ts-ignore
-        document.getElementById('buttonDiv'),
-        { theme: 'outline', size: 'large', width: '100%' }
+        document.getElementById('buttonDiv') as HTMLElement,
+        { theme: 'outline', size: 'large'}
       );
       // @ts-ignore
-      google.accounts.id.prompt((notification: PromptMomentNotification) => {});
+      google.accounts.id.prompt((notification: PromptMomentNotification) => undefined);
     };
   }
 
