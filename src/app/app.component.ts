@@ -2,10 +2,11 @@ import { Component, HostBinding, OnInit } from '@angular/core';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { filter } from 'rxjs/operators';
 
-import { fader, horizontalSlider, slider, stepper, transformer } from './route-animations';
+import { transformer } from './route-animations';
 
 import { ThemeService } from "./services/theme.service";
 
+// eslint-disable-next-line @typescript-eslint/ban-types
 declare let gtag: Function;
 
 @Component({
@@ -21,7 +22,7 @@ declare let gtag: Function;
   ]
 })
 export class AppComponent implements OnInit {
-  @HostBinding('attr.class') _componentCssClass: any;
+  @HostBinding('attr.class') _componentCssClass: unknown;
   title = 'awstests';
   private GOOGLE_ANALYTICS_ID = 'G-PTNVG3SZ8W';
 

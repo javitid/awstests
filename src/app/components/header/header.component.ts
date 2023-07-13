@@ -38,14 +38,14 @@ export class HeaderComponent implements OnInit {
     main?.classList.toggle('active');
   }
 
-  public getSelectedQuestionary(event: any): void {
+  public getSelectedQuestionary(event: {value: string}): void {
     this._dataService.getQuestions(event.value).subscribe ( result => {
       this.filterName = SECTION[0];
       this.questionaryChangeEvent.emit(result.documents);
     });
   }
 
-  public setFilter(event: any): void {
+  public setFilter(event: {value: string}): void {
     this.filter.emit(event.value);
   }
 }
