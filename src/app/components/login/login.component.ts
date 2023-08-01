@@ -6,6 +6,7 @@ import { CredentialResponse, PromptMomentNotification } from 'google-one-tap';
 
 import { environment } from '../../../environments/environment';
 import { AuthService } from '../../services/auth.service';
+import { PATH } from '../../config/constants';
 
 declare const FB: any;
 
@@ -19,7 +20,7 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private service: AuthService,
+    private authService: AuthService,
     private _ngZone: NgZone,
     private fb: FormBuilder,
     private _snackBar: MatSnackBar
@@ -32,7 +33,9 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     // Show button when the user is already logged in and the path has changed
+    // @ts-ignore
     if(window.google) {
+      // @ts-ignore
       window.google.accounts.id.renderButton(
         document.getElementById('buttonDiv') as HTMLElement,
         { theme: 'outline', size: 'large' }
@@ -59,7 +62,7 @@ export class LoginComponent implements OnInit {
   }
 
   async handleCredentialResponse(response: CredentialResponse) {
-    await this.service.LoginWithGoogle(response.credential).subscribe(
+    await this.authService.LoginWithGoogle(response.credential).subscribe(
       (x: any) => {
         this._ngZone.run(() => {
           this.router.navigate(['/logout']);
@@ -75,12 +78,10 @@ export class LoginComponent implements OnInit {
     //this.formSubmitAttempt = false;
     if (this.form.valid) {
       try {
-        this.service.login(this.form.value).subscribe(
-          (x: any) => {
-            this.router.navigate(['/logout']);
-            this._snackBar.open('Login Successful', 'Close', {
-              duration: 2000,
-            });
+        this.authService.login(this.form.value).subscribe(
+          (tokenBearer: any) => {
+            this.authService.saveToken('Bearer ' + tokenBearer.access_token);
+            this.router.navigate([PATH.DASHBOARD]);
           },
           (error: any) => {
             console.error(error);
@@ -102,7 +103,7 @@ export class LoginComponent implements OnInit {
   async login() {
     FB.login(
       async (result: any) => {
-        await this.service
+        await this.authService
           .LoginWithFacebook(result.authResponse.accessToken)
           .subscribe(
             (x: any) => {

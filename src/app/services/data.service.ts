@@ -4,13 +4,13 @@ import { FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { shareReplay } from 'rxjs/operators';
 
+import { environment } from '../../environments/environment';
 import { QUESTIONARIES } from '../config/constants';
 import { Questions } from '../interfaces/Question';
 
 let questions: Observable<Questions>;
 let questionsForm = new FormGroup({});
 const questionary = new Map();
-const URL_POST_QUESTIONARY = 'https://eu-west-2.aws.data.mongodb-api.com/app/data-iuwtk/endpoint/data/v1/action/find';
 
 @Injectable({
   providedIn: 'root'
@@ -33,7 +33,7 @@ export class DataService {
         database: 'awstests',
         collection: questionaryName
     };
-      questions = this.http.post<Questions>(URL_POST_QUESTIONARY, requestBody, {headers: requestHeaders}).pipe(shareReplay(1));
+      questions = this.http.post<Questions>(environment.urlPostQuestionaries, requestBody, {headers: requestHeaders}).pipe(shareReplay(1));
       questionary.set(questionaryName, questions);
     }
     return questions;
