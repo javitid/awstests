@@ -6,6 +6,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { SettingsComponent } from './components/settings/settings.component';
 import { LoginComponent } from './components/login/login.component';
 import { LogoutComponent } from './components/logout/logout.component';
+import { RegisterComponent } from './components/register/register.component';
 // import { AuthMongoDBGuard } from './guards/auth-mongodb.guard';
 import { TokenGuard } from './guards/token.guard';
 
@@ -40,6 +41,10 @@ const routes: Routes = [
         data: {animation: 'isRight'},
         canActivate: [TokenGuard]
       },
+      {
+        path: 'register',
+        component: RegisterComponent
+      }
     ],
   },
 ];
