@@ -20,6 +20,7 @@ import { LoginComponent } from './components/login/login.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { QuestionComponent } from './components/question/question.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
+import { RegisterComponent } from './components/register/register.component';
 import { SettingsComponent } from './components/settings/settings.component';
 
 import { HelperService } from './services/helper.service';
@@ -40,6 +41,7 @@ import { TokenGuard } from './guards/token.guard';
     LogoutComponent,
     QuestionComponent,
     NavigationComponent,
+    RegisterComponent,
     SettingsComponent
   ],
   imports: [
