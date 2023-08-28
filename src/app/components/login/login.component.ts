@@ -4,9 +4,9 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { CredentialResponse, PromptMomentNotification } from 'google-one-tap';
 
+import { PATH } from '../../config/constants';
 import { environment } from '../../../environments/environment';
 import { AuthService } from '../../services/auth.service';
-import { PATH } from '../../config/constants';
 
 declare const FB: any;
 
@@ -17,6 +17,7 @@ declare const FB: any;
 })
 export class LoginComponent implements OnInit {
   private clientId = environment.clientId;
+  public isPwdHidden = true;
 
   constructor(
     private router: Router,
@@ -63,9 +64,10 @@ export class LoginComponent implements OnInit {
 
   async handleCredentialResponse(response: CredentialResponse) {
     await this.authService.LoginWithGoogle(response.credential).subscribe(
-      (x: any) => {
+      (tokenBearer: any) => {
         this._ngZone.run(() => {
-          this.router.navigate(['/logout']);
+          this.authService.saveToken('Bearer ' + tokenBearer.access_token);
+          this.router.navigate([PATH.DASHBOARD]);
         });
       },
       (error: any) => {
@@ -106,9 +108,10 @@ export class LoginComponent implements OnInit {
         await this.authService
           .LoginWithFacebook(result.authResponse.accessToken)
           .subscribe(
-            (x: any) => {
+            (tokenBearer: any) => {
               this._ngZone.run(() => {
-                this.router.navigate(['/logout']);
+                this.authService.saveToken('Bearer ' + tokenBearer.access_token);
+                this.router.navigate([PATH.DASHBOARD]);
               });
             },
             (error: any) => {
