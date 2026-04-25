@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
+import { PATH } from 'src/app/config/constants';
 
 @Component({
   selector: 'app-logout',
@@ -9,11 +11,13 @@ import { AuthService } from 'src/app/services/auth.service';
 export class LogoutComponent {
 
   constructor(
-    private service: AuthService
+    private readonly service: AuthService,
+    private readonly router: Router
   ) {
   }
 
-  public logout(): void {
-    this.service.signOutExternal();
+  public async logout(): Promise<void> {
+    await this.service.signOutExternal();
+    await this.router.navigate([PATH.LOGIN]);
   }
 }

@@ -1,11 +1,9 @@
 import { Component } from '@angular/core';
-import { AbstractControl, FormBuilder, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 
 import { AuthService } from '../../services/auth.service';
-
-declare const FB: any;
 
 @Component({
   selector: 'app-register',
@@ -13,7 +11,7 @@ declare const FB: any;
   styleUrls: ['./register.component.scss'],
 })
 export class RegisterComponent {
-  public form: any;
+  public form: FormGroup;
 
   constructor(
     private router: Router,
@@ -30,29 +28,23 @@ export class RegisterComponent {
 
   async onSubmit() {
     if (this.form.valid) {
-      try {
-        this.authService.register({
-          email: this.form.value.email,
-          password: this.form.value.password
-        }).subscribe(
-          () => {
-            this._snackBar.open('User created', 'Close', {
-              duration: 5000,
-            });
-            this.router.navigate(['/login']);
-          },
-          (error: any) => {
-            this._snackBar.open('HTTP ' + error.status + ' ' + error.error.error_code + ': '+ error.error.error, 'Close', {
-              duration: 10000,
-            });
-          }
-        );
-      } catch (err) {
-        this._snackBar.open('Error with Email or Password', 'Close', {
-          duration: 5000,
-        });
-      }
-    } else {
+      this.authService.register({
+        email: this.form.value.email,
+        password: this.form.value.password
+      }).subscribe({
+        next: async () => {
+          this._snackBar.open('User created', 'Close', {
+            duration: 5000,
+          });
+          await this.router.navigate(['/login']);
+        },
+        error: (error: unknown) => {
+          const message = error instanceof Error ? error.message : 'Error with Email or Password';
+          this._snackBar.open(message, 'Close', {
+            duration: 10000,
+          });
+        }
+      });
     }
   }
 

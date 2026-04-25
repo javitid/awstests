@@ -16,17 +16,21 @@ export class AuthMongoDBGuard implements CanActivate {
     private http: HttpClient
   ) {}
 
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> {
-    const requestBody = {'key': environment.mongoDBApiKey};
-    if(this.authService.getToken()) { return of(true) }
+  canActivate(_route: ActivatedRouteSnapshot, _state: RouterStateSnapshot): Observable<boolean> {
+    void _route;
+    void _state;
+    const requestBody = { key: environment.mongoDBApiKey };
 
-    return this.http.post<string>(URL_BEARER_TOKEN, requestBody).pipe(
+    if (this.authService.getToken()) {
+      return of(true);
+    }
+
+    return this.http.post<{ access_token: string }>(URL_BEARER_TOKEN, requestBody).pipe(
       shareReplay(1),
-      map((tokenBearer: any) => {
+      map((tokenBearer) => {
         this.authService.saveToken('Bearer ' + tokenBearer.access_token);
-        return of(!!tokenBearer)
+        return !!tokenBearer;
       })
     );
   }
-
 }

@@ -12,29 +12,34 @@ const HOVERED = 'hovered';
 })
 export class NavigationComponent {
   @Output() themeChangeEvent = new EventEmitter<string>();
-  @HostBinding('class') _componentCssClass: any;
+  @HostBinding('class') _componentCssClass = '';
 
   public PATH = PATH;
   public isThemeSelected = false;
 
   constructor(private _helperService: HelperService) {}
 
-  public activeLink($event: any): void {
+  public activeLink(event: Event): void {
     // Add hovered class in selected menu element
     const list = document.querySelectorAll('.navigation li');
     list.forEach(item => {
       item.classList.remove(HOVERED);
     });
 
-    switch($event.target.tagName) {
+    const target = event.target as HTMLElement | null;
+    if (!target) {
+      return;
+    }
+
+    switch(target.tagName) {
       case 'A':
-        $event.srcElement.parentElement.classList.add(HOVERED);
+        target.parentElement?.classList.add(HOVERED);
         break;
       case 'SPAN':
-        $event.srcElement.parentElement.parentElement.classList.add(HOVERED);
+        target.parentElement?.parentElement?.classList.add(HOVERED);
         break;
       case 'IMG':
-        $event.srcElement.parentElement.parentElement.parentElement.classList.add(HOVERED);
+        target.parentElement?.parentElement?.parentElement?.classList.add(HOVERED);
         break;
     }
 

@@ -1,5 +1,57 @@
 # Awstests
 
+## Arranque local
+
+1. Instala dependencias:
+
+```bash
+npm install
+```
+
+2. Crea tu entorno local:
+
+```bash
+cp src/environments/environment.local.example.ts src/environments/environment.local.ts
+```
+
+3. Rellena `src/environments/environment.local.ts`.
+
+4. Arranca la app:
+
+```bash
+npm start
+```
+
+## GitHub Pages
+
+La build para Pages usa `baseHref` en `/awstests/` y genera el contenido en `dist/awstests`.
+
+Comando local:
+
+```bash
+npm run build:pages
+```
+
+El workflow `.github/workflows/deploy-pages.yml` publica automáticamente en GitHub Pages cuando hay push a `main`.
+
+## Tests
+
+Los tests unitarios se ejecutan con Jest:
+
+```bash
+npm run test:unit
+```
+
+Necesitas estos secretos en GitHub:
+
+- `FIREBASE_API_KEY`
+- `FIREBASE_AUTH_DOMAIN`
+- `FIREBASE_PROJECT_ID`
+- `FIREBASE_STORAGE_BUCKET`
+- `FIREBASE_MESSAGING_SENDER_ID`
+- `FIREBASE_APP_ID`
+- `FIREBASE_MEASUREMENT_ID`
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.1.1.
 
 ## Development server
@@ -16,7 +68,7 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 
 ## Running unit tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Run `npm run test:unit` to execute the unit tests with Jest.
 
 ## Running end-to-end tests
 

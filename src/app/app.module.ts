@@ -1,4 +1,4 @@
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -28,7 +28,6 @@ import { ThemeService } from './services/theme.service';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { AuthService } from './services/auth.service';
-import { AuthMongoDBInterceptorService } from './services/auth-mongodb-interceptor.service';
 // import { AuthMongoDBGuard } from './guards/auth-mongodb.guard';
 import { TokenGuard } from './guards/token.guard';
 
@@ -74,7 +73,6 @@ import { TokenGuard } from './guards/token.guard';
     AuthService,
     HelperService,
     ThemeService,
-    { provide: HTTP_INTERCEPTORS, useClass: AuthMongoDBInterceptorService, multi: true },
     { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'outline' } },
     { provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: {duration: 2500} }
   ],

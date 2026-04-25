@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 import { QuestionComponent } from './question.component';
+import { DataService } from '../../services/data.service';
 
 describe('QuestionComponent', () => {
   let component: QuestionComponent;
@@ -8,7 +10,16 @@ describe('QuestionComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ QuestionComponent ]
+      declarations: [ QuestionComponent ],
+      imports: [ReactiveFormsModule],
+      providers: [
+        {
+          provide: DataService,
+          useValue: {
+            getQuestionsForm: () => new FormGroup({})
+          }
+        }
+      ]
     })
     .compileComponents();
   });

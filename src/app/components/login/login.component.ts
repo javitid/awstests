@@ -1,145 +1,69 @@
-import { Component, OnInit, NgZone } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { ActivatedRoute, Router } from '@angular/router';
-import { CredentialResponse, PromptMomentNotification } from 'google-one-tap';
-
+import { Router } from '@angular/router';
 import { PATH } from '../../config/constants';
-import { environment } from '../../../environments/environment';
 import { AuthService } from '../../services/auth.service';
-
-declare const FB: any;
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss'],
+  styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
-  private clientId = environment.clientId;
-  public isPwdHidden = true;
-
-  constructor(
-    private readonly activatedRoute: ActivatedRoute,
-    private readonly authService: AuthService,
-    private readonly fb: FormBuilder,
-    private readonly router: Router,
-    private readonly _ngZone: NgZone,
-    private readonly _snackBar: MatSnackBar
-  ) {}
-
-  form = this.fb.group({
-    username: ['', Validators.email],
+export class LoginComponent {
+  public readonly form = this.formBuilder.group({
+    email: ['', [Validators.required, Validators.email]],
     password: ['', Validators.required],
   });
+  public isPwdHidden = true;
+  public readonly firebaseConfigured = this.authService.isFirebaseReady();
 
-  ngOnInit(): void {
-    // Check if user comes from mongoDB confirmation email (token and tokenId)
-    // Confirm user
-    this.activatedRoute.queryParams.pipe().subscribe(({ token, tokenId }) => {
-      if (token) {
-        try {
-          this.authService.confirmUser(token, tokenId).subscribe(result => {
-            this.router.navigate([PATH.DASHBOARD]);
-            this._snackBar.open('User confirmed! Please, do log-in', 'Close', {
-              duration: 5000,
-            });
-          });
-        } catch (err) {
-          this._snackBar.open('Error with the user confirmation', 'Close', {
-            duration: 5000,
-          });
-        }
-      }
+  constructor(
+    private readonly authService: AuthService,
+    private readonly formBuilder: FormBuilder,
+    private readonly router: Router,
+    private readonly snackBar: MatSnackBar
+  ) {}
+
+  async loginWithGoogle(): Promise<void> {
+    try {
+      await this.authService.signInWithGoogle();
+      await this.router.navigate([PATH.DASHBOARD]);
+    } catch (error) {
+      this.showError(error);
+    }
+  }
+
+  async continueAsGuest(): Promise<void> {
+    try {
+      await this.authService.signInAsGuest();
+      await this.router.navigate([PATH.DASHBOARD]);
+    } catch (error) {
+      this.showError(error);
+    }
+  }
+
+  onSubmit(): void {
+    if (this.form.invalid) {
+      return;
+    }
+
+    this.authService.login({
+      email: this.form.value.email || '',
+      password: this.form.value.password || '',
+    }).subscribe({
+      next: async () => {
+        await this.router.navigate([PATH.DASHBOARD]);
+      },
+      error: (error) => this.showError(error),
     });
-
-    // Show button when the user is already logged in and the path has changed
-    // @ts-ignore
-    if(window.google) {
-      // @ts-ignore
-      window.google.accounts.id.renderButton(
-        document.getElementById('buttonDiv') as HTMLElement,
-        { theme: 'outline', size: 'large' }
-      );
-    }
-
-    (window as any).onGoogleLibraryLoad = () => {
-      // @ts-ignore
-      google.accounts.id.initialize({
-        client_id: this.clientId,
-        callback: this.handleCredentialResponse.bind(this),
-        auto_select: false,
-        cancel_on_tap_outside: true,
-      });
-
-      // @ts-ignore
-      google.accounts.id.renderButton(
-        document.getElementById('buttonDiv') as HTMLElement,
-        { theme: 'outline', size: 'large'}
-      );
-      // @ts-ignore
-      google.accounts.id.prompt((notification: PromptMomentNotification) => undefined);
-    };
   }
 
-  async handleCredentialResponse(response: CredentialResponse) {
-    await this.authService.LoginWithGoogle(response.credential).subscribe(
-      (tokenBearer: any) => {
-        this._ngZone.run(() => {
-          this.authService.saveToken('Bearer ' + tokenBearer.access_token);
-          this.router.navigate([PATH.DASHBOARD]);
-        });
-      },
-      (error: any) => {
-        console.log(error);
-      }
-    );
-  }
-
-  async onSubmit() {
-    //this.formSubmitAttempt = false;
-    if (this.form.valid) {
-      try {
-        this.authService.login(this.form.value).subscribe(
-          (tokenBearer: any) => {
-            this.authService.saveToken('Bearer ' + tokenBearer.access_token);
-            this.router.navigate([PATH.DASHBOARD]);
-          },
-          (error: any) => {
-            console.error(error);
-            this._snackBar.open('Error with Username or Password', 'Close', {
-              duration: 5000,
-            });
-          }
-        );
-      } catch (err) {
-        this._snackBar.open('Error with Username or Password', 'Close', {
-          duration: 5000,
-        });
-      }
-    } else {
-      //this.formSubmitAttempt = true;
-    }
-  }
-
-  async login() {
-    FB.login(
-      async (result: any) => {
-        await this.authService
-          .LoginWithFacebook(result.authResponse.accessToken)
-          .subscribe(
-            (tokenBearer: any) => {
-              this._ngZone.run(() => {
-                this.authService.saveToken('Bearer ' + tokenBearer.access_token);
-                this.router.navigate([PATH.DASHBOARD]);
-              });
-            },
-            (error: any) => {
-              console.log(error);
-            }
-          );
-      },
-      { scope: 'email' }
-    );
+  private showError(error: unknown): void {
+    const message =
+      error instanceof Error ? error.message : 'No se pudo iniciar sesion.';
+    this.snackBar.open(message, 'Cerrar', {
+      duration: 6000,
+    });
   }
 }
