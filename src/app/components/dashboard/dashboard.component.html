@@ -1,14 +1,16 @@
 <div class="main">
-    <app-header (questionaryChangeEvent)="questionaryChangeEvent($event)" (filter)="filterChangeEvent($event)"></app-header>
-    <div class="details">
-        <div *ngFor="let question of questions; let index = index">
-            <form [formGroup]="questionsForm" >
-                <app-question 
-                    [questionNumber]="index+1"
-                    [question]="question"
-                    [questionControlName]="question.id.toString()">
-                </app-question>
-            </form>
-        </div>
-    </div>
+  <app-header (questionaryChangeEvent)="questionaryChangeEvent($event)" (filter)="filterChangeEvent($event)"></app-header>
+  <div class="details">
+    @for (question of questions; track question; let index = $index) {
+      <div>
+        <form [formGroup]="questionsForm" >
+          <app-question
+            [questionNumber]="index+1"
+            [question]="question"
+            [questionControlName]="question.id.toString()">
+          </app-question>
+        </form>
+      </div>
+    }
+  </div>
 </div>

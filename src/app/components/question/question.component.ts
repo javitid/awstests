@@ -7,6 +7,7 @@ import { DataService } from '../../services/data.service';
 
 @Component({
   selector: 'app-question',
+  standalone: false,
   templateUrl: './question.component.html',
   styleUrls: ['./question.component.scss'],
   viewProviders: [

@@ -7,6 +7,7 @@ const HOVERED = 'hovered';
 
 @Component({
   selector: 'app-navigation',
+  standalone: false,
   templateUrl: './navigation.component.html',
   styleUrls: ['./navigation.component.scss']
 })

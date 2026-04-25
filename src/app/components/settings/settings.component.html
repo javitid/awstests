@@ -1,34 +1,42 @@
 <app-header [isQuestionary]="false" [isFilter]="false"></app-header>
 
 <div class="settings-wrapper">
-    <form [formGroup]="settingsForm" class="form-wrapper">
-        <mat-form-field class="form-input">
-            <mat-label>First Name</mat-label>
-            <input matInput [formControl]="firstName">
-            <mat-icon matSuffix>person</mat-icon>
-            <mat-hint>Type your first name</mat-hint>
-            <mat-error *ngIf="hasError('firstName', 'required')">First name should be filled</mat-error>
-            <mat-error *ngIf="hasError('firstName', 'maxlength')">Length exceed {{maxLength}}</mat-error>
-        </mat-form-field>
+  <form [formGroup]="settingsForm" class="form-wrapper">
+    <mat-form-field class="form-input">
+      <mat-label>First Name</mat-label>
+      <input matInput [formControl]="firstName">
+      <mat-icon matSuffix>person</mat-icon>
+      <mat-hint>Type your first name</mat-hint>
+      @if (hasError('firstName', 'required')) {
+        <mat-error>First name should be filled</mat-error>
+      }
+      @if (hasError('firstName', 'maxlength')) {
+        <mat-error>Length exceed {{maxLength}}</mat-error>
+      }
+    </mat-form-field>
 
-        <mat-form-field class="form-input">
-            <mat-label>Last Name</mat-label>
-            <input matInput [formControl]="lastName">
-            <mat-icon matSuffix>person_outline</mat-icon>
-            <mat-hint>Type your last name</mat-hint>
-            <mat-error *ngIf="hasError('firstName', 'required')">First name should be filled</mat-error>
-            <mat-error *ngIf="hasError('firstName', 'maxlength')">Length exceed {{maxLength}}</mat-error>
-        </mat-form-field>
+    <mat-form-field class="form-input">
+      <mat-label>Last Name</mat-label>
+      <input matInput [formControl]="lastName">
+      <mat-icon matSuffix>person_outline</mat-icon>
+      <mat-hint>Type your last name</mat-hint>
+      @if (hasError('firstName', 'required')) {
+        <mat-error>First name should be filled</mat-error>
+      }
+      @if (hasError('firstName', 'maxlength')) {
+        <mat-error>Length exceed {{maxLength}}</mat-error>
+      }
+    </mat-form-field>
 
-    </form>
+  </form>
 
-    <p>Complete the form to enable button -> TODO: it's not wroking yet, it will be available soon.</p>
-    <button type="submit" color="primary" mat-raised-button [disabled]="!settingsForm.valid">Submit</button>
+  <p>Complete the form to enable button -> TODO: it's not wroking yet, it will be available soon.</p>
+  <button type="submit" color="primary" mat-raised-button [disabled]="!settingsForm.valid">Submit</button>
 
-    <div class="buttons-wrapper">
-        <button color="primary" mat-raised-button>Primary</button>
-        <button color="accent" mat-raised-button>Accent</button>
-        <button color="warn" mat-raised-button>Warn</button>
-    </div>
+  <div class="buttons-wrapper">
+    <button color="primary" mat-raised-button>Primary</button>
+    <button color="accent" mat-raised-button>Accent</button>
+    <button color="warn" mat-raised-button>Warn</button>
+  </div>
 
 </div>

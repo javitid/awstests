@@ -5,6 +5,7 @@ import { PATH } from 'src/app/config/constants';
 
 @Component({
   selector: 'app-logout',
+  standalone: false,
   templateUrl: './logout.component.html',
   styleUrls: ['./logout.component.scss']
 })

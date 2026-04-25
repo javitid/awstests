@@ -1,13 +1,15 @@
 <div>
-  <mat-card *ngIf="!firebaseConfigured">
-    <mat-card-content>
-      <h2>Firebase pendiente</h2>
-      <p>
-        Rellena la configuracion en <code>src/environments/environment*.ts</code>
-        para activar Google, invitado y email/password.
-      </p>
-    </mat-card-content>
-  </mat-card>
+  @if (!firebaseConfigured) {
+    <mat-card>
+      <mat-card-content>
+        <h2>Firebase pendiente</h2>
+        <p>
+          Rellena la configuracion en <code>src/environments/environment*.ts</code>
+          para activar Google, invitado y email/password.
+        </p>
+      </mat-card-content>
+    </mat-card>
+  }
 
   <mat-card>
     <mat-card-content>

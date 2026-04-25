@@ -6,6 +6,7 @@ import { DataService } from '../../services/data.service';
 
 @Component({
   selector: 'app-dashboard',
+  standalone: false,
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
 })

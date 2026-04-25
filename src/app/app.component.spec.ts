@@ -7,6 +7,7 @@ import { ThemeService } from './services/theme.service';
 
 @Component({
   selector: 'app-navigation',
+  standalone: false,
   template: ''
 })
 class NavigationStubComponent {}

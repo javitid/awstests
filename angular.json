@@ -162,7 +162,6 @@
       }
     }
   },
-  "defaultProject": "awstests",
   "cli": {
     "schematicCollections": [
       "@angular-eslint/schematics"

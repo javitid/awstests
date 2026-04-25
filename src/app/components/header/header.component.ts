@@ -6,6 +6,7 @@ import { DataService } from '../../services/data.service';
 
 @Component({
   selector: 'app-header',
+  standalone: false,
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })

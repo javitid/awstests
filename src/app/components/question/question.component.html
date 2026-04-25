@@ -1,27 +1,35 @@
 <h2>{{questionNumber}}. {{question?.question_plain}}</h2>
 
 <table>
-    <tbody>
-        <tr *ngFor="let option of question?.prompt?.answers, let index = index"
+  <tbody>
+    @for (option of question?.prompt?.answers; track option; let index = $index) {
+      <tr
         [class.wrong-answer]="showResponse && isWrongResponse(index)"
         [class.correct-answer]="showResponse && isCorrectResponse(index)">
-            <td *ngIf="isAssessmentType(ASSESSMENT_TYPE.RADIO)">
-                <input type="radio" id="{{questionControlName}}{{index}}" formControlName="{{questionControlName}}" value="{{index}}">
-                <label for="{{questionControlName}}{{index}}">{{getOptionText(option)}}</label>
-            </td>
-            <td *ngIf="isAssessmentType(ASSESSMENT_TYPE.CHECKBOX)">
-                <input type="checkbox" id="{{questionControlName}}{{index}}" formControlName="{{questionControlName}}" value="{{index}}">
-                <label for="{{questionControlName}}{{index}}">{{getOptionText(option)}}</label>
-            </td>
-        </tr>
-        <tr>
-            <td class="button-row">
-                <button color="primary" mat-raised-button (click)="toggleResult()">Result</button>
-                <button color="primary" mat-raised-button (click)="toggleExplanation()">Explanation</button>
-            </td>
-        </tr>
-        <tr>
-            <td *ngIf="showExplanation" [innerHtml]="question?.prompt?.explanation"></td>
-        </tr>
-    </tbody>
+        @if (isAssessmentType(ASSESSMENT_TYPE.RADIO)) {
+          <td>
+            <input type="radio" id="{{questionControlName}}{{index}}" formControlName="{{questionControlName}}" value="{{index}}">
+            <label for="{{questionControlName}}{{index}}">{{getOptionText(option)}}</label>
+          </td>
+        }
+        @if (isAssessmentType(ASSESSMENT_TYPE.CHECKBOX)) {
+          <td>
+            <input type="checkbox" id="{{questionControlName}}{{index}}" formControlName="{{questionControlName}}" value="{{index}}">
+            <label for="{{questionControlName}}{{index}}">{{getOptionText(option)}}</label>
+          </td>
+        }
+      </tr>
+    }
+    <tr>
+      <td class="button-row">
+        <button color="primary" mat-raised-button (click)="toggleResult()">Result</button>
+        <button color="primary" mat-raised-button (click)="toggleExplanation()">Explanation</button>
+      </td>
+    </tr>
+    <tr>
+      @if (showExplanation) {
+        <td [innerHtml]="question?.prompt?.explanation"></td>
+      }
+    </tr>
+  </tbody>
 </table>

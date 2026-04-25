@@ -30,7 +30,10 @@
             "prefix": "app",
             "style": "kebab-case"
           }
-        ]
+        ],
+        "@angular-eslint/prefer-inject": "off",
+        "@angular-eslint/prefer-standalone": "off",
+        "@typescript-eslint/no-unsafe-function-type": "off"
       }
     },
     {

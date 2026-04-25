@@ -6,11 +6,11 @@ import { transformer } from './route-animations';
 
 import { ThemeService } from "./services/theme.service";
 
-// eslint-disable-next-line @typescript-eslint/ban-types
-declare let gtag: Function;
+declare let gtag: (...args: unknown[]) => void;
 
 @Component({
   selector: 'app-root',
+  standalone: false,
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
   animations: [
