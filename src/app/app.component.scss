@@ -18,6 +18,16 @@
     width: calc(100% - 95px);
 }
 
+.main.full-width {
+    left: 0;
+    width: 100%;
+}
+
+.main.full-width.active {
+    left: 0;
+    width: 100%;
+}
+
 /* Responsive design */
 @media (max-width: 768px) {
     .main {

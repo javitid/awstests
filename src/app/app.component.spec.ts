@@ -3,8 +3,10 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { of } from 'rxjs';
 import { AppComponent } from './app.component';
 import { ThemeService } from './services/theme.service';
+import { AuthService } from './services/auth.service';
 
 @Component({
   selector: 'app-navigation',
@@ -30,6 +32,12 @@ describe('AppComponent', () => {
           useValue: {
             setTheme: jest.fn(),
             getTheme: jest.fn().mockReturnValue('')
+          }
+        },
+        {
+          provide: AuthService,
+          useValue: {
+            isAuthenticated$: jest.fn().mockReturnValue(of(true))
           }
         }
       ],

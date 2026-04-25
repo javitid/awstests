@@ -1,9 +1,10 @@
 import { Component, HostBinding, OnInit } from '@angular/core';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
-import { filter } from 'rxjs/operators';
+import { Observable, filter } from 'rxjs';
 
 import { transformer } from './route-animations';
 
+import { AuthService } from './services/auth.service';
 import { ThemeService } from "./services/theme.service";
 
 declare let gtag: (...args: unknown[]) => void;
@@ -25,11 +26,15 @@ export class AppComponent implements OnInit {
   @HostBinding('attr.class') _componentCssClass: unknown;
   title = 'awstests';
   private GOOGLE_ANALYTICS_ID = 'G-PTNVG3SZ8W';
+  public isAuthenticated$: Observable<boolean>;
 
   constructor(
     private _router: Router,
     private _themeService: ThemeService,
-  ) {}
+    private _authService: AuthService
+  ) {
+    this.isAuthenticated$ = this._authService.isAuthenticated$();
+  }
 
   ngOnInit(): void {
     this.setUpAnalytics();
