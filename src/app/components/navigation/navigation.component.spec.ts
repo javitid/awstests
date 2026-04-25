@@ -8,6 +8,7 @@ import { ToggleSwitchModule } from 'primeng/toggleswitch';
 import { NavigationComponent } from './navigation.component';
 import { HelperService } from '../../services/helper.service';
 import { ThemeService } from '../../services/theme.service';
+import { AuthService } from '../../services/auth.service';
 
 describe('NavigationComponent', () => {
   let component: NavigationComponent;
@@ -34,6 +35,12 @@ describe('NavigationComponent', () => {
           useValue: {
             getTheme: jest.fn().mockReturnValue(''),
             setTheme: jest.fn()
+          }
+        },
+        {
+          provide: AuthService,
+          useValue: {
+            signOutExternal: jest.fn().mockResolvedValue(undefined)
           }
         }
       ],

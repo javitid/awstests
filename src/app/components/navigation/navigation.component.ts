@@ -1,6 +1,8 @@
 import { Component, EventEmitter, HostBinding, OnInit, Output } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { PATH, THEMES } from '../../config/constants';
+import { AuthService } from '../../services/auth.service';
 import { HelperService } from '../../services/helper.service';
 import { ThemeService } from '../../services/theme.service';
 
@@ -21,7 +23,9 @@ export class NavigationComponent implements OnInit {
 
   constructor(
     private _helperService: HelperService,
-    private _themeService: ThemeService
+    private _themeService: ThemeService,
+    private _authService: AuthService,
+    private _router: Router
   ) {}
 
   ngOnInit(): void {
@@ -64,6 +68,11 @@ export class NavigationComponent implements OnInit {
     const newTheme = this.isThemeSelected ? THEMES.DARK : THEMES.LIGHT;
     this.themeChangeEvent.emit(newTheme);
     if (this._helperService.isSmallScreen){this.toggle();}
+  }
+
+  public async onLogout(): Promise<void> {
+    await this._authService.signOutExternal();
+    await this._router.navigate([PATH.LOGIN]);
   }
 
   private toggle(): void {

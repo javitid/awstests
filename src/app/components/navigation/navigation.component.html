@@ -18,18 +18,12 @@
                 <span class="title">Settings</span>
             </a>
         </li>
-        <!-- <li (click)="activeLink($event)" [ngClass]="{'hovered': settingsRLRef.isActive}">
-            <a [routerLink]="PATH.LOGIN" routerLinkActive="active" #settingsRLRef="routerLinkActive">
-                <i class="pi pi-sign-in nav-icon"></i>
-                <span class="title">Log In</span>
+        <li (click)="onLogout()">
+            <a>
+                <i class="pi pi-sign-out nav-icon"></i>
+                <span class="title">Logout</span>
             </a>
         </li>
-        <li (click)="activeLink($event)" [ngClass]="{'hovered': settingsRLRef.isActive}">
-            <a [routerLink]="PATH.LOGOUT" routerLinkActive="active" #settingsRLRef="routerLinkActive">
-                <i class="pi pi-sign-out nav-icon"></i>
-                <span class="title">Log Out</span>
-            </a>
-        </li> -->
     </ul>
     <div class="theme-switch">
         <p-toggleswitch
