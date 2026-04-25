@@ -1,12 +1,10 @@
-@use "../../config/colors" as *;
-
 .navigation {
-  background: $blue;
-  border-left: 10px solid $blue;
+  background: var(--app-primary);
+  border-left: 10px solid var(--app-primary-strong);
   height: 100%;
   overflow: hidden;
   position: fixed;
-  transition: 0.5s;
+  transition: 0.5s, background-color 0.25s ease, border-color 0.25s ease;
   width: 290px;
 }
 
@@ -32,7 +30,7 @@
 
 .navigation ul li:hover,
 .navigation ul li.hovered {
-  background: $white;
+  background: var(--app-surface-muted);
 }
 
 .navigation ul li:nth-child(1) {
@@ -41,16 +39,17 @@
 }
 
 .navigation ul li a {
-  color: $white;
+  color: var(--app-on-primary);
   display: flex;
   position: relative;
   text-decoration: none;
   width: 100%;
+  transition: color 0.25s ease;
 }
 
 .navigation ul li:hover a,
 .navigation ul li.hovered a {
-  color: $blue;
+  color: var(--app-primary-strong);
 }
 
 .navigation ul li a .icon {
@@ -88,7 +87,7 @@
 .navigation ul li.hovered a::before {
   background: transparent;
   border-radius: 50%;
-  box-shadow: 35px 35px 0 10px $white;
+  box-shadow: 35px 35px 0 10px var(--app-surface-muted);
   content: "";
   height: 50px;
   position: absolute;
@@ -102,7 +101,7 @@
   background: transparent;
   border-radius: 50%;
   bottom: -50px;
-  box-shadow: 35px -35px 0 10px $white;
+  box-shadow: 35px -35px 0 10px var(--app-surface-muted);
   content: "";
   height: 50px;
   position: absolute;
@@ -113,7 +112,7 @@
 .theme-switch {
   align-items: center;
   bottom: 20px;
-  color: $white;
+  color: var(--app-on-primary);
   display: flex;
   gap: 12px;
   padding-left: 15px;

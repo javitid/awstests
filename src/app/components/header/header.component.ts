@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
-import { QUESTIONARIES, SECTION } from '../../config/constants';
+import { QUESTIONARIES } from '../../config/constants';
 import { Question } from '../../interfaces/Question';
 import { DataService } from '../../services/data.service';
 
@@ -17,7 +17,7 @@ export class HeaderComponent implements OnInit {
   @Output() filter = new EventEmitter<string>();
 
   public QUESTIONARIES = QUESTIONARIES;
-  public SECTION = SECTION;
+  public SECTION: string[] = ['all'];
   public filterName = 'all';
   public questionaryName: string = QUESTIONARIES[0];
 
@@ -26,7 +26,8 @@ export class HeaderComponent implements OnInit {
   ) { }
 
   public ngOnInit(): void {
-    this._dataService.getQuestions(this.questionaryName).subscribe ( result => {
+    this._dataService.getQuestions(this.questionaryName).subscribe (result => {
+      this.updateSections(result.documents);
       this.questionaryChangeEvent.emit(result.documents);
     });
   }
@@ -40,13 +41,23 @@ export class HeaderComponent implements OnInit {
   }
 
   public getSelectedQuestionary(event: {value: string}): void {
-    this._dataService.getQuestions(event.value).subscribe ( result => {
-      this.filterName = SECTION[0];
+    const selectedQuestionary = event?.value ?? this.questionaryName;
+
+    this._dataService.getQuestions(selectedQuestionary).subscribe((result) => {
+      this.updateSections(result.documents);
+      this.filterName = 'all';
+      this.filter.emit(this.filterName);
       this.questionaryChangeEvent.emit(result.documents);
     });
   }
 
   public setFilter(event: {value: string}): void {
-    this.filter.emit(event.value);
+    const section = event?.value ?? this.filterName;
+    this.filter.emit(section);
+  }
+
+  private updateSections(questions: Question[]): void {
+    const uniqueSections = Array.from(new Set(questions.map((question) => question.section))).sort();
+    this.SECTION = ['all', ...uniqueSections];
   }
 }

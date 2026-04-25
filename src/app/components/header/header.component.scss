@@ -1,11 +1,11 @@
-@use "../../config/colors" as *;
-
 .topbar {
   align-items: center;
-  background-color: $blue;
+  background-color: var(--app-primary);
+  border-bottom: 1px solid var(--app-primary-strong);
   display: flex;
   height: 60px;
   justify-content: space-between;
+  transition: background-color 0.25s ease, border-color 0.25s ease;
   width: 100%;
 }
 
@@ -19,14 +19,14 @@
 }
 
 .toggle-icon {
-  color: $white;
+  color: var(--app-on-primary);
   font-size: 40px;
   height: auto;
   width: 40px;
 }
 
 .title {
-  color: $white;
+  color: var(--app-on-primary);
 }
 
 .header--dropdown {
@@ -35,10 +35,16 @@
 }
 
 .header--label {
-  color: $white;
+  color: var(--app-on-primary);
   display: block;
   font-size: 0.85rem;
   margin-bottom: 6px;
+}
+
+:host ::ng-deep .header--dropdown .p-select {
+  background: var(--app-surface-muted);
+  border-color: var(--app-border);
+  color: var(--app-text);
 }
 
 /* Responsive design */
