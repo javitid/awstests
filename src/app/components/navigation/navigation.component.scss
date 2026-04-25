@@ -68,9 +68,9 @@
   padding: 10px 0;
 }
 
-mat-icon {
+.nav-icon {
   font-size: 40px;
-  padding: 10px 50px 15px 10px;
+  padding: 10px 20px 15px 10px;
 }
 
 .navigation ul li a .title {
@@ -111,10 +111,13 @@ mat-icon {
 }
 
 .theme-switch {
+  align-items: center;
   bottom: 20px;
+  color: $white;
+  display: flex;
+  gap: 12px;
   padding-left: 15px;
   position: fixed;
-  color: $white;
 }
 
 /* Responsive design */

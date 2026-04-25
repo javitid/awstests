@@ -1,56 +1,48 @@
 <div>
   @if (!firebaseConfigured) {
-    <mat-card>
-      <mat-card-content>
+    <p-card>
         <h2>Firebase pendiente</h2>
         <p>
           Rellena la configuracion en <code>src/environments/environment*.ts</code>
           para activar Google, invitado y email/password.
         </p>
-      </mat-card-content>
-    </mat-card>
+    </p-card>
   }
 
-  <mat-card>
-    <mat-card-content>
+  <p-card>
       <h2>Entrar</h2>
       <div class="login-actions">
-        <button type="button" mat-raised-button color="primary" (click)="loginWithGoogle()" [disabled]="!firebaseConfigured">
-          Continuar con Google
-        </button>
-        <button type="button" mat-stroked-button color="primary" (click)="continueAsGuest()" [disabled]="!firebaseConfigured">
-          Entrar como invitado
-        </button>
+        <button type="button" pButton label="Continuar con Google" (click)="loginWithGoogle()" [disabled]="!firebaseConfigured"></button>
+        <button type="button" pButton severity="secondary" label="Entrar como invitado" (click)="continueAsGuest()" [disabled]="!firebaseConfigured"></button>
       </div>
-    </mat-card-content>
-  </mat-card>
+  </p-card>
 
-  <mat-card>
-    <mat-card-content>
+  <p-card>
       <form [formGroup]="form" (ngSubmit)="onSubmit()">
         <h2>Email y password</h2>
-        <mat-form-field>
-          <mat-label>Email</mat-label>
-          <input matInput formControlName="email" required>
-          <mat-error>
-            Please provide a valid email address
-          </mat-error>
-        </mat-form-field>
-        <mat-form-field>
-          <mat-label>Password</mat-label>
-          <input matInput [type]="isPwdHidden ? 'password' : 'text'" formControlName="password" required>
-          <mat-icon matSuffix (click)="isPwdHidden = !isPwdHidden">{{isPwdHidden ? 'visibility_off' : 'visibility'}}</mat-icon>
-          <mat-error>
-            Please provide a valid password
-          </mat-error>
-        </mat-form-field>
+        <div class="field">
+          <label for="login-email">Email</label>
+          <input id="login-email" pInputText formControlName="email" required>
+          @if (form.controls.email.invalid && form.controls.email.touched) {
+            <small class="error-text">Please provide a valid email address</small>
+          }
+        </div>
+        <div class="field">
+          <label for="login-password">Password</label>
+          <p-password
+            inputId="login-password"
+            formControlName="password"
+            [feedback]="false"
+            [toggleMask]="true">
+          </p-password>
+          @if (form.controls.password.invalid && form.controls.password.touched) {
+            <small class="error-text">Please provide a valid password</small>
+          }
+        </div>
         <div class="login-actions">
-          <button type="submit" [disabled]="!form.valid || !firebaseConfigured" mat-raised-button color="primary">
-            Login
-          </button>
+          <button type="submit" pButton label="Login" [disabled]="!form.valid || !firebaseConfigured"></button>
           <a routerLink="/register">Register</a>
         </div>
       </form>
-    </mat-card-content>
-  </mat-card>
+  </p-card>
 </div>

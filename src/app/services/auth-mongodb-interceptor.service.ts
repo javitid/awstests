@@ -6,8 +6,8 @@ import {
   HttpInterceptor,
   HttpRequest,
 } from '@angular/common/http';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { MessageService } from 'primeng/api';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
@@ -19,7 +19,7 @@ export class AuthMongoDBInterceptorService implements HttpInterceptor {
   constructor(
     private readonly authService: AuthService,
     private readonly router: Router,
-    private readonly snackBar: MatSnackBar
+    private readonly messageService: MessageService
   ) {}
 
   intercept(
@@ -31,19 +31,16 @@ export class AuthMongoDBInterceptorService implements HttpInterceptor {
     return next.handle(req.clone({ headers })).pipe(
       catchError((event: any) => {
         if(event.status === 401) {
-          const snackBarRef = this.snackBar.open('Authentication token expired', 'Click to reload', {
-            duration: 10000,
+          this.messageService.add({
+            severity: 'warn',
+            summary: 'Sesion expirada',
+            detail: 'Authentication token expired. Recarga la pagina si lo necesitas.',
+            life: 10000,
           });
 
           // Clear Bearer and redirect to login screen
           this.authService.saveToken('');
           this.router.navigate([PATH.LOGIN]);
-
-          snackBarRef.afterDismissed().subscribe((result) => {
-            if (result.dismissedByAction) {
-              location.reload();
-            }
-          });
         }
         return throwError(event);
       })

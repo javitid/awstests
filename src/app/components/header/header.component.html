@@ -1,31 +1,35 @@
 <div class="topbar">
   <div class="toggle" (click)="toggle()">
-    <mat-icon color="primary">menu</mat-icon>
+    <i class="pi pi-bars toggle-icon"></i>
   </div>
   <div class="title">
     <h1>AWS</h1>
   </div>
 
   @if (isFilter) {
-    <mat-form-field appearance="fill" color="primary" class="header--dropdown">
-      <mat-label>Section filter</mat-label>
-      <mat-select [(value)]="filterName" (selectionChange)="setFilter($event)">
-        @for (section of SECTION; track section) {
-          <mat-option [value]="section">{{section}}</mat-option>
-        }
-      </mat-select>
-    </mat-form-field>
+    <div class="header--dropdown">
+      <label class="header--label" for="section-filter">Section filter</label>
+      <p-select
+        inputId="section-filter"
+        [options]="SECTION"
+        [(ngModel)]="filterName"
+        (onChange)="setFilter($event)"
+        appendTo="body">
+      </p-select>
+    </div>
   }
 
   @if (isQuestionary) {
-    <mat-form-field appearance="fill" color="primary" class="header--dropdown">
-      <mat-label>Questionary</mat-label>
-      <mat-select [(value)]="questionaryName" (selectionChange)="getSelectedQuestionary($event)">
-        @for (questionary of QUESTIONARIES; track questionary) {
-          <mat-option [value]="questionary">{{questionary}}</mat-option>
-        }
-      </mat-select>
-    </mat-form-field>
+    <div class="header--dropdown">
+      <label class="header--label" for="questionary-select">Questionary</label>
+      <p-select
+        inputId="questionary-select"
+        [options]="QUESTIONARIES"
+        [(ngModel)]="questionaryName"
+        (onChange)="getSelectedQuestionary($event)"
+        appendTo="body">
+      </p-select>
+    </div>
   }
 
   @if (!isFilter && !isQuestionary) {

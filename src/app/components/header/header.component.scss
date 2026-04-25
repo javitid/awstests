@@ -18,7 +18,8 @@
   cursor: pointer;
 }
 
-mat-icon {
+.toggle-icon {
+  color: $white;
   font-size: 40px;
   height: auto;
   width: 40px;
@@ -29,7 +30,15 @@ mat-icon {
 }
 
 .header--dropdown {
-  padding-top: 20px;
+  min-width: 220px;
+  padding-top: 8px;
+}
+
+.header--label {
+  color: $white;
+  display: block;
+  font-size: 0.85rem;
+  margin-bottom: 6px;
 }
 
 /* Responsive design */
@@ -45,7 +54,8 @@ mat-icon {
   .topbar {
     align-items: initial;
     flex-direction: column;
-    height: 125px;
+    gap: 8px;
+    height: auto;
     padding-bottom: 150px;
   }
 }

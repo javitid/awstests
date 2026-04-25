@@ -2,41 +2,39 @@
 
 <div class="settings-wrapper">
   <form [formGroup]="settingsForm" class="form-wrapper">
-    <mat-form-field class="form-input">
-      <mat-label>First Name</mat-label>
-      <input matInput [formControl]="firstName">
-      <mat-icon matSuffix>person</mat-icon>
-      <mat-hint>Type your first name</mat-hint>
+    <div class="form-input">
+      <label for="first-name">First Name</label>
+      <input id="first-name" pInputText [formControl]="firstName">
+      <small>Type your first name</small>
       @if (hasError('firstName', 'required')) {
-        <mat-error>First name should be filled</mat-error>
+        <small class="error-text">First name should be filled</small>
       }
       @if (hasError('firstName', 'maxlength')) {
-        <mat-error>Length exceed {{maxLength}}</mat-error>
+        <small class="error-text">Length exceed {{maxLength}}</small>
       }
-    </mat-form-field>
+    </div>
 
-    <mat-form-field class="form-input">
-      <mat-label>Last Name</mat-label>
-      <input matInput [formControl]="lastName">
-      <mat-icon matSuffix>person_outline</mat-icon>
-      <mat-hint>Type your last name</mat-hint>
-      @if (hasError('firstName', 'required')) {
-        <mat-error>First name should be filled</mat-error>
+    <div class="form-input">
+      <label for="last-name">Last Name</label>
+      <input id="last-name" pInputText [formControl]="lastName">
+      <small>Type your last name</small>
+      @if (hasError('lastName', 'required')) {
+        <small class="error-text">Last name should be filled</small>
       }
-      @if (hasError('firstName', 'maxlength')) {
-        <mat-error>Length exceed {{maxLength}}</mat-error>
+      @if (hasError('lastName', 'maxlength')) {
+        <small class="error-text">Length exceed {{maxLength}}</small>
       }
-    </mat-form-field>
+    </div>
 
   </form>
 
   <p>Complete the form to enable button -> TODO: it's not wroking yet, it will be available soon.</p>
-  <button type="submit" color="primary" mat-raised-button [disabled]="!settingsForm.valid">Submit</button>
+  <button type="submit" pButton [disabled]="!settingsForm.valid" label="Submit"></button>
 
   <div class="buttons-wrapper">
-    <button color="primary" mat-raised-button>Primary</button>
-    <button color="accent" mat-raised-button>Accent</button>
-    <button color="warn" mat-raised-button>Warn</button>
+    <button type="button" pButton label="Primary"></button>
+    <button type="button" pButton severity="secondary" label="Secondary"></button>
+    <button type="button" pButton severity="danger" label="Danger"></button>
   </div>
 
 </div>

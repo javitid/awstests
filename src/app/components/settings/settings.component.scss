@@ -7,11 +7,29 @@ button + button {
 }
 
 .form-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
   max-width: 400px;
 }
 
 .form-input {
   display: block;
+}
+
+.form-input label,
+.form-input small {
+  display: block;
+}
+
+.form-input label {
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.form-input small {
+  color: #64748b;
+  margin-top: 6px;
 }
 
 .settings-wrapper {

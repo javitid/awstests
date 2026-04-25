@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { MessageService } from 'primeng/api';
 import { PATH } from '../../config/constants';
 import { AuthService } from '../../services/auth.service';
 
@@ -23,7 +23,7 @@ export class LoginComponent {
     private readonly authService: AuthService,
     private readonly formBuilder: FormBuilder,
     private readonly router: Router,
-    private readonly snackBar: MatSnackBar
+    private readonly messageService: MessageService
   ) {}
 
   async loginWithGoogle(): Promise<void> {
@@ -63,8 +63,11 @@ export class LoginComponent {
   private showError(error: unknown): void {
     const message =
       error instanceof Error ? error.message : 'No se pudo iniciar sesion.';
-    this.snackBar.open(message, 'Cerrar', {
-      duration: 6000,
+    this.messageService.add({
+      severity: 'error',
+      summary: 'Login',
+      detail: message,
+      life: 6000,
     });
   }
 }

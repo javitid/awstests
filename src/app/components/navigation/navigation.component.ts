@@ -39,6 +39,9 @@ export class NavigationComponent {
       case 'SPAN':
         target.parentElement?.parentElement?.classList.add(HOVERED);
         break;
+      case 'I':
+        target.parentElement?.parentElement?.classList.add(HOVERED);
+        break;
       case 'IMG':
         target.parentElement?.parentElement?.parentElement?.classList.add(HOVERED);
         break;

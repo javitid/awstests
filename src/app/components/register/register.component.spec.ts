@@ -1,8 +1,9 @@
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { RouterTestingModule } from '@angular/router/testing';
+import { MessageService } from 'primeng/api';
+import { PasswordModule } from 'primeng/password';
 import { of } from 'rxjs';
 
 import { RegisterComponent } from './register.component';
@@ -15,8 +16,9 @@ describe('RegisterComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [RegisterComponent],
-      imports: [ReactiveFormsModule, MatSnackBarModule, RouterTestingModule],
+      imports: [ReactiveFormsModule, RouterTestingModule, PasswordModule],
       providers: [
+        MessageService,
         {
           provide: AuthService,
           useValue: {

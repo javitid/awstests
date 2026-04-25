@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { MessageService } from 'primeng/api';
 
 import { AuthService } from '../../services/auth.service';
 
@@ -18,7 +18,7 @@ export class RegisterComponent {
     private router: Router,
     private authService: AuthService,
     private fb: FormBuilder,
-    private _snackBar: MatSnackBar
+    private messageService: MessageService
   ) {
     this.form = this.fb.group({
       email: ['', Validators.email],
@@ -34,15 +34,21 @@ export class RegisterComponent {
         password: this.form.value.password
       }).subscribe({
         next: async () => {
-          this._snackBar.open('User created', 'Close', {
-            duration: 5000,
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Registro',
+            detail: 'Usuario creado',
+            life: 5000,
           });
           await this.router.navigate(['/login']);
         },
         error: (error: unknown) => {
           const message = error instanceof Error ? error.message : 'Error with Email or Password';
-          this._snackBar.open(message, 'Close', {
-            duration: 10000,
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Registro',
+            detail: message,
+            life: 10000,
           });
         }
       });
