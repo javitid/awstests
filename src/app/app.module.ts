@@ -31,7 +31,6 @@ import { ThemeService } from './services/theme.service';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { AuthService } from './services/auth.service';
-// import { AuthMongoDBGuard } from './guards/auth-mongodb.guard';
 import { TokenGuard } from './guards/token.guard';
 
 @NgModule({
@@ -68,7 +67,6 @@ import { TokenGuard } from './guards/token.guard';
     })
   ],
   providers: [
-    // AuthMongoDBGuard,
     TokenGuard,
     AuthService,
     MessageService,

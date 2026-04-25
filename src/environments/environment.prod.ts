@@ -11,8 +11,5 @@ export const environment = {
     messagingSenderId: "",
     appId: "",
     measurementId: ""
-  },
-  mongoDBApiKey: "wqpWulczRnpjjlxT6l63Zcc8ySV9mTB9VuRuxgcvARxFkILvNZuMDUpdyLUGxdF9",
-  urlBearerToken: 'https://eu-west-2.aws.realm.mongodb.com/api/client/v2.0/app/data-iuwtk/auth/providers/api-key/login',
-  urlPostQuestionaries: 'https://eu-west-2.aws.data.mongodb-api.com/app/data-iuwtk/endpoint/data/v1/action/find'
+  }
 };

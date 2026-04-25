@@ -1,5 +1,6 @@
 import { FirebaseApp, FirebaseOptions, getApp, getApps, initializeApp } from 'firebase/app';
 import { Auth, getAuth } from 'firebase/auth';
+import { Firestore, getFirestore } from 'firebase/firestore';
 
 import { environment } from 'src/environments/environment';
 
@@ -24,4 +25,8 @@ export function getFirebaseApp(): FirebaseApp {
 
 export function getFirebaseAuthInstance(): Auth {
   return getAuth(getFirebaseApp());
+}
+
+export function getFirebaseFirestoreInstance(): Firestore {
+  return getFirestore(getFirebaseApp());
 }

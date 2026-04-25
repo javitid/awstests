@@ -1,71 +1,55 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { FormGroup } from '@angular/forms';
-import { Observable, throwError } from 'rxjs';
-import { catchError, shareReplay, switchMap } from 'rxjs/operators';
+import { collection, getDocs } from 'firebase/firestore';
+import { Observable, from, throwError } from 'rxjs';
+import { catchError, map, shareReplay } from 'rxjs/operators';
 
-import { environment } from '../../environments/environment';
 import { QUESTIONARIES } from '../config/constants';
-import { Questions } from '../interfaces/Question';
-import { MongoDataAuthService } from './mongo-data-auth.service';
+import { Question, Questions } from '../interfaces/Question';
+import { getFirebaseFirestoreInstance } from '../config/firebase.config';
 
-let questions: Observable<Questions>;
 let questionsForm = new FormGroup({});
-const questionary = new Map();
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
-  httpError?: HttpErrorResponse;
-  
-  constructor(
-    private readonly http: HttpClient,
-    private readonly mongoDataAuthService: MongoDataAuthService
-  ) { }
+  httpError?: unknown;
+  private readonly firestore = getFirebaseFirestoreInstance();
+  private readonly questionnaireCache = new Map<string, Observable<Questions>>();
 
   getQuestions(questionaryName: string = QUESTIONARIES[0]): Observable<Questions>{
-    if (questionary.has(questionaryName)) {
-      questions = questionary.get(questionaryName);
-    } else {
-      const requestBody = {
-        dataSource: 'Cluster0',
-        database: 'awstests',
-        collection: questionaryName
-      };
-      questions = this.mongoDataAuthService.getToken().pipe(
-        switchMap((token) => {
-          const requestHeaders = new HttpHeaders({
-            Accept: 'application/json',
-            Authorization: token,
-          });
-
-          return this.http.post<Questions>(environment.urlPostQuestionaries, requestBody, {
-            headers: requestHeaders,
-          });
-        }),
-        catchError((error: HttpErrorResponse) => {
-          questionary.delete(questionaryName);
-
-          if (error.status === 401) {
-            this.mongoDataAuthService.clearToken();
-          }
-
-          this.setHttpError(error);
-          return throwError(error);
-        }),
-        shareReplay(1)
-      );
-      questionary.set(questionaryName, questions);
+    if (this.questionnaireCache.has(questionaryName)) {
+      return this.questionnaireCache.get(questionaryName) as Observable<Questions>;
     }
-    return questions;
+
+    const questions$ = from(getDocs(collection(this.firestore, questionaryName))).pipe(
+      map((snapshot) => ({
+        documents: snapshot.docs.map((documentSnapshot) => {
+          const data = documentSnapshot.data() as Omit<Question, '_id'>;
+          return {
+            _id: { $oid: documentSnapshot.id },
+            ...data,
+          } as Question;
+        }),
+      })),
+      catchError((error: unknown) => {
+        this.questionnaireCache.delete(questionaryName);
+        this.setHttpError(error);
+        return throwError(() => error);
+      }),
+      shareReplay(1)
+    );
+
+    this.questionnaireCache.set(questionaryName, questions$);
+    return questions$;
   }
 
-  getHttpError(): HttpErrorResponse|undefined  {
+  getHttpError(): unknown {
     return this.httpError;
   }
 
-  setHttpError(error: HttpErrorResponse): void {
+  setHttpError(error: unknown): void {
     this.httpError = error;
   }
 

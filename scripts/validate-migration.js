@@ -5,7 +5,7 @@
  * 
  * Verifica que:
  * - Firebase Service Account Key es válida
- * - MongoDB Realm API funciona
+ * - MongoDB Realm API funciona (si no esta en EOL)
  * - Tienes acceso a ambos servicios
  */
 
@@ -62,6 +62,15 @@ async function validateMongoDB() {
     });
 
     if (!response.ok) {
+      const body = await response.text();
+      if (response.status === 410 || body.includes('have reached EOL')) {
+        console.log('❌ MongoDB Realm: EOL detectado');
+        console.log('   Atlas App Services/Device Sync ya no esta disponible para este endpoint.');
+        console.log('   Usa migracion directa Atlas -> Firestore con:');
+        console.log('   npm run migrate:atlas-to-firestore\n');
+        return false;
+      }
+
       throw new Error(`HTTP ${response.status}`);
     }
 
@@ -108,12 +117,13 @@ async function validate() {
   console.log('\n═══════════════════════════════════════');
   
   if (firebaseOk && mongodbOk) {
-    console.log('✨ ¡Todo está listo para migrar!');
+    console.log('✨ ¡Todo esta listo para migrar!');
     console.log('\nEjecuta:');
     console.log('  node scripts/migrate-mongodb-to-firestore.js\n');
     process.exit(0);
   } else {
     console.log('❌ Hay problemas. Revisa los errores arriba.\n');
+    console.log('Si MongoDB Realm esta en EOL, usa: npm run migrate:atlas-to-firestore\n');
     process.exit(1);
   }
 }

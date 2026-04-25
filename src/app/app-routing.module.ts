@@ -7,14 +7,11 @@ import { SettingsComponent } from './components/settings/settings.component';
 import { LoginComponent } from './components/login/login.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { RegisterComponent } from './components/register/register.component';
-// import { AuthMongoDBGuard } from './guards/auth-mongodb.guard';
 import { TokenGuard } from './guards/token.guard';
 
 const routes: Routes = [
   {
     path: '',
-    // Only it's needed to get a Bearer token if the login auth is not implemented, other case the token is retrieved in the login service response
-    // canActivate: [AuthMongoDBGuard],
     children: [
       {
         path: '',
