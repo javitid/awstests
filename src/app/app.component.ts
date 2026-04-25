@@ -31,11 +31,16 @@ export class AppComponent implements OnInit {
     private _themeService: ThemeService,
   ) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.setUpAnalytics();
+    // Initialize theme from stored value
+    const savedTheme = this._themeService.getTheme();
+    if (savedTheme) {
+      this._componentCssClass = savedTheme;
+    }
   }
 
-  public onSetTheme(theme: string) {
+  public onSetTheme(theme: string): void {
     this._componentCssClass = theme;
     this._themeService.setTheme(theme);
   }

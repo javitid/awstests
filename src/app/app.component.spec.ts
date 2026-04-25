@@ -28,7 +28,8 @@ describe('AppComponent', () => {
         {
           provide: ThemeService,
           useValue: {
-            setTheme: jest.fn()
+            setTheme: jest.fn(),
+            getTheme: jest.fn().mockReturnValue('')
           }
         }
       ],

@@ -7,6 +7,7 @@ import { ToggleSwitchModule } from 'primeng/toggleswitch';
 
 import { NavigationComponent } from './navigation.component';
 import { HelperService } from '../../services/helper.service';
+import { ThemeService } from '../../services/theme.service';
 
 describe('NavigationComponent', () => {
   let component: NavigationComponent;
@@ -26,6 +27,13 @@ describe('NavigationComponent', () => {
           provide: HelperService,
           useValue: {
             isSmallScreen: false
+          }
+        },
+        {
+          provide: ThemeService,
+          useValue: {
+            getTheme: jest.fn().mockReturnValue(''),
+            setTheme: jest.fn()
           }
         }
       ],
