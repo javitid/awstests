@@ -11,7 +11,9 @@
     "test": "jest",
     "test:unit": "jest --runInBand",
     "deploy": "ng build && gh-pages -d dist/awstests",
-    "lint": "ng lint"
+    "lint": "ng lint",
+    "migrate:validate": "node scripts/validate-migration.js",
+    "migrate:mongodb-to-firestore": "node scripts/migrate-mongodb-to-firestore.js"
   },
   "private": true,
   "dependencies": {
@@ -53,6 +55,7 @@
     "@typescript-eslint/parser": "^8.59.0",
     "@typescript-eslint/utils": "^8.59.0",
     "eslint": "^8.57.1",
+    "firebase-admin": "^13.8.0",
     "gh-pages": "^5.0.0",
     "jasmine-core": "~3.8.0",
     "jest": "^30.2.0",

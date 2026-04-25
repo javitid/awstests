@@ -1,0 +1,6 @@
+# Ignora la clave de servicio de Firebase (no debe compartirse en git)
+firebase-service-key.json
+
+# Archivos temporales de la migración
+*.backup.json
+migration-log.txt
