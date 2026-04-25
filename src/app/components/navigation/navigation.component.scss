@@ -1,4 +1,4 @@
-@import "../../config/colors";
+@use "../../config/colors" as *;
 
 .navigation {
   background: $blue;
