@@ -90,6 +90,37 @@ npm run test:unit
 npm run build:pages
 ```
 
+### Build y despliegue en latarce.es
+
+1. Crear el fichero local con Firebase de produccion:
+
+```bash
+cp scripts/latarce-firebase-prod.env.example .local/latarce-firebase-prod.env
+```
+
+2. Rellenar `.local/latarce-firebase-prod.env` con las claves reales.
+
+3. Generar `environment.prod.ts` desde ese fichero y compilar:
+
+```bash
+npm run build:latarce
+```
+
+4. Desplegar por FTPS limpiando antes la raiz asignada a la cuenta:
+
+```bash
+npm run deploy:latarce:build
+```
+
+Notas:
+
+- `environment.prod.ts` se deja sin secretos en el repo.
+- `npm run build:latarce` y `npm run deploy:latarce:build` generan temporalmente ese fichero desde `.local/latarce-firebase-prod.env` y lo restauran al terminar.
+- `.local/` no entra en git.
+- Para login con Google, en Firebase Auth hay que autorizar el dominio final.
+  - Añadir `latarce.es` y, si aplica, `www.latarce.es` en la lista de Authorized domains.
+  - Si no se hace, Google fallara con `auth/unauthorized-domain`.
+
 ### Migracion Atlas -> Firestore
 
 Valida prerequisitos del flujo antiguo (si aplica):
