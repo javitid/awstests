@@ -1,7 +1,11 @@
 <p-toast position="top-right"></p-toast>
 @if (isAuthenticated$ | async) {
-  <app-navigation (themeChangeEvent)="onSetTheme($event)"></app-navigation>
+  <app-navigation></app-navigation>
 }
-<div class="main" [ngClass]="{'full-width': (isAuthenticated$ | async) === false}" [@routeAnimations]="prepareRoute(outlet)">
+<div
+  class="main"
+  [class.active]="layoutService.navigationActive()"
+  [ngClass]="{'full-width': (isAuthenticated$ | async) === false}"
+  [@routeAnimations]="prepareRoute(outlet)">
     <router-outlet #outlet="outlet"></router-outlet>
 </div>

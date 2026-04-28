@@ -1,12 +1,14 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, FormGroupDirective, ReactiveFormsModule } from '@angular/forms';
 
 import { QuestionComponent } from './question.component';
-import { DataService } from '../../services/data.service';
 
 describe('QuestionComponent', () => {
   let component: QuestionComponent;
   let fixture: ComponentFixture<QuestionComponent>;
+  const formGroup = new FormGroup({
+    '1': new FormControl('1')
+  });
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -14,9 +16,9 @@ describe('QuestionComponent', () => {
       imports: [ReactiveFormsModule],
       providers: [
         {
-          provide: DataService,
+          provide: FormGroupDirective,
           useValue: {
-            getQuestionsForm: () => new FormGroup({})
+            control: formGroup
           }
         }
       ]
@@ -32,5 +34,27 @@ describe('QuestionComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should mark a radio answer as wrong when the selected index is incorrect', () => {
+    component.question = {
+      _class: 'Question',
+      _id: { $oid: '1' },
+      assessment_type: 'multiple-choice',
+      correct_response: ['a'],
+      id: 1,
+      prompt: {
+        answers: ['A', 'B'],
+        explanation: '',
+        feedbacks: [],
+        question: '',
+        relatedLectureIds: ''
+      },
+      question_plain: 'Sample question',
+      section: 'AWS Storage'
+    };
+    component.questionControlName = '1';
+
+    expect(component.isWrongResponse(1)).toBe(true);
   });
 });

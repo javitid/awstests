@@ -4,17 +4,18 @@
 
 .main {
     background: var(--app-surface);
+    box-sizing: border-box;
     color: var(--app-text);
-    left: 300px;
+    left: 290px;
     min-height: 100vh;
     position: absolute;
     transition: 0.5s, background-color 0.25s ease, color 0.25s ease;
-    width: calc(100% - 315px);
+    width: calc(100% - 290px);
 }
 
 .main.active {
-    left: 80px;
-    width: calc(100% - 95px);
+    left: 70px;
+    width: calc(100% - 70px);
 }
 
 .main.full-width {
@@ -31,16 +32,24 @@
 @media (max-width: 768px) {
     .main {
         left: 0;
-        width: calc(100% - 15px);
+        width: 100%;
     }
 
     .main.active {
-        left: 80px;
-        width: calc(100% - 95px);
+        left: 0;
+        width: 100%;
     }
 }
 
 @media (max-width: 480px) {
+    :host {
+        overflow-x: hidden;
+    }
+
+    .main {
+        overflow-x: hidden;
+    }
+
     .main.active ::ng-deep .toggle {
         left: initial;
         position: fixed;

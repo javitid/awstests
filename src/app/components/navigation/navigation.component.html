@@ -1,4 +1,4 @@
-<div class="navigation">
+<div class="navigation" [class.active]="layoutService.navigationActive()">
     <ul>
         <li>
             <a>
@@ -6,14 +6,14 @@
                 <span class="title">AWS</span>
             </a>
         </li>
-        <li (click)="activeLink($event)" [ngClass]="{'hovered': dashboardRLRef.isActive}">
-            <a [routerLink]="PATH.DASHBOARD" routerLinkActive="active" #dashboardRLRef="routerLinkActive">
+        <li [routerLinkActive]="'active'" [routerLinkActiveOptions]="{ exact: true }">
+            <a [routerLink]="PATH.DASHBOARD" (click)="onNavigationItemSelected()">
                 <i class="pi pi-list nav-icon"></i>
                 <span class="title">Questions</span>
             </a>
         </li>
-        <li (click)="activeLink($event)" [ngClass]="{'hovered': settingsRLRef.isActive}">
-            <a [routerLink]="PATH.SETTINGS" routerLinkActive="active" #settingsRLRef="routerLinkActive">
+        <li [routerLinkActive]="'active'">
+            <a [routerLink]="PATH.SETTINGS" (click)="onNavigationItemSelected()">
                 <i class="pi pi-cog nav-icon"></i>
                 <span class="title">Settings</span>
             </a>

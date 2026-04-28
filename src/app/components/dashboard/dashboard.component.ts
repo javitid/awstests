@@ -1,42 +1,18 @@
-import { Component } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
-import { Question } from '../../interfaces/Question';
-import { DataService } from '../../services/data.service';
+import { QuizStateService } from '../../services/quiz-state.service';
 
 @Component({
   selector: 'app-dashboard',
   standalone: false,
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DashboardComponent {
-  public allQuestions: Question[] = [];
-  public questions: Question[] = [];
-  public filter = '';
-  public questionsForm: FormGroup;
-
-  constructor(
-    private _dataService: DataService,
-  ) { 
-    this.questionsForm = this._dataService.getQuestionsForm();
-  }
-
-  // Called from header when a new questionary is loaded
-  questionaryChangeEvent(event: Question[]): void {
-    this.questions = event;
-    this.allQuestions = event;
-
-    // Add form control for each question to be able to get/set the question value
-    this.questions.map((question: Question) => {
-      this.questionsForm.addControl(question.id.toString(), new FormControl())
-    });
-  }
-
-  filterChangeEvent(section: string): void {
-    this.questions = [...this.allQuestions];
-    if (section !== 'all') {
-      this.questions = this.questions.filter( (question: Question) => question.section === section);
+  constructor(public readonly quizState: QuizStateService) {
+    if (this.quizState.allQuestions().length === 0) {
+      this.quizState.loadQuestionary();
     }
   }
 }

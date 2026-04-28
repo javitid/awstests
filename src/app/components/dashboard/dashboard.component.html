@@ -1,9 +1,9 @@
 <div class="main">
-  <app-header (questionaryChangeEvent)="questionaryChangeEvent($event)" (filter)="filterChangeEvent($event)"></app-header>
+  <app-header></app-header>
   <div class="details">
-    @for (question of questions; track question; let index = $index) {
+    @for (question of quizState.filteredQuestions(); track question.id; let index = $index) {
       <div>
-        <form [formGroup]="questionsForm" >
+        <form [formGroup]="quizState.questionsForm()">
           <app-question
             [questionNumber]="index+1"
             [question]="question"

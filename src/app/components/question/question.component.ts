@@ -1,9 +1,8 @@
-import { Component, Input } from '@angular/core';
-import { ControlContainer, FormGroup, FormGroupDirective } from '@angular/forms';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ControlContainer, FormGroupDirective } from '@angular/forms';
 
 import { ASSESSMENT_TYPE } from '../../config/constants';
 import { Question } from '../../interfaces/Question';
-import { DataService } from '../../services/data.service';
 
 @Component({
   selector: 'app-question',
@@ -15,7 +14,8 @@ import { DataService } from '../../services/data.service';
       provide: ControlContainer,
       useExisting: FormGroupDirective,
     }
-  ]
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class QuestionComponent{
   @Input()
@@ -28,13 +28,6 @@ export class QuestionComponent{
   public ASSESSMENT_TYPE = ASSESSMENT_TYPE;
   public showResponse = false;
   public showExplanation = false;
-  public questionsForm: FormGroup;
-
-  constructor(
-    private _dataService: DataService,
-  ) { 
-    this.questionsForm = this._dataService.getQuestionsForm();
-  }
 
   public isAssessmentType(assessment_type: string): boolean {
     return this.question?.assessment_type === assessment_type;
@@ -46,8 +39,9 @@ export class QuestionComponent{
   }
 
   public isWrongResponse(index: number): boolean {
+    const currentValue = this.controlContainer.control?.get(this.questionControlName)?.value;
     return !this.isCorrectResponse(index) &&
-           this.questionsForm.controls[this.questionControlName].value == index &&
+           currentValue == index &&
            this.isAssessmentType(ASSESSMENT_TYPE.RADIO);
   }
 
@@ -86,4 +80,10 @@ export class QuestionComponent{
     }
     return response;
   }
+
+  private get controlContainer(): FormGroupDirective {
+    return this.formGroupDirective;
+  }
+
+  constructor(private readonly formGroupDirective: FormGroupDirective) {}
 }

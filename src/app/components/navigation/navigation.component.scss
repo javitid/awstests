@@ -1,9 +1,12 @@
 .navigation {
   background: var(--app-primary);
   border-left: 10px solid var(--app-primary-strong);
+  box-sizing: border-box;
   height: 100%;
+  left: 0;
   overflow: hidden;
   position: fixed;
+  top: 0;
   transition: 0.5s, background-color 0.25s ease, border-color 0.25s ease;
   width: 290px;
 }
@@ -14,6 +17,7 @@
 
 .navigation ul {
   left: 0;
+  margin: 0;
   padding-left: 0;
   position: absolute;
   top: 0;
@@ -29,7 +33,7 @@
 }
 
 .navigation ul li:hover,
-.navigation ul li.hovered {
+.navigation ul li.active {
   background: var(--app-surface-muted);
 }
 
@@ -48,7 +52,7 @@
 }
 
 .navigation ul li:hover a,
-.navigation ul li.hovered a {
+.navigation ul li.active a {
   color: var(--app-primary-strong);
 }
 
@@ -84,7 +88,7 @@
 
 /* curve outside */
 .navigation ul li:hover a::before,
-.navigation ul li.hovered a::before {
+.navigation ul li.active a::before {
   background: transparent;
   border-radius: 50%;
   box-shadow: 35px 35px 0 10px var(--app-surface-muted);
@@ -97,7 +101,7 @@
 }
 
 .navigation ul li:hover a::after,
-.navigation ul li.hovered a::after {
+.navigation ul li.active a::after {
   background: transparent;
   border-radius: 50%;
   bottom: -50px;
@@ -112,11 +116,14 @@
 .theme-switch {
   align-items: center;
   bottom: 20px;
+  box-sizing: border-box;
   color: var(--app-on-primary);
   display: flex;
   gap: 12px;
-  padding-left: 15px;
+  left: 0;
+  padding: 0 15px;
   position: fixed;
+  right: 0;
 }
 
 /* Responsive design */
@@ -133,13 +140,25 @@
 
 @media (max-width: 480px) {
   .navigation {
-    left: calc(-100% - 10px);
-    width: 100%;
+    border-left: 0;
+    left: -100vw;
+    width: 100vw;
     z-index: 1000;
   }
 
   .navigation.active {
     left: 0;
-    width: 100%;
+    width: 100vw;
+  }
+
+  .navigation ul li {
+    border-radius: 0;
+  }
+
+  .navigation ul li:hover a::before,
+  .navigation ul li.active a::before,
+  .navigation ul li:hover a::after,
+  .navigation ul li.active a::after {
+    display: none;
   }
 }

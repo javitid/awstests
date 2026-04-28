@@ -1,22 +1,19 @@
-import { Injectable } from "@angular/core";
+import { Injectable, signal } from '@angular/core';
 
 const THEME_STORAGE_KEY = 'app-theme';
 
 @Injectable()
 export class ThemeService {
-  private _theme = '';
-
-  constructor() {
-    this._theme = this.loadTheme();
-  }
+  private readonly themeSignal = signal(this.loadTheme());
+  readonly theme = this.themeSignal.asReadonly();
 
   setTheme(theme: string): void {
-    this._theme = theme;
+    this.themeSignal.set(theme);
     localStorage.setItem(THEME_STORAGE_KEY, theme);
   }
 
   getTheme(): string {
-    return this._theme;
+    return this.themeSignal();
   }
 
   private loadTheme(): string {

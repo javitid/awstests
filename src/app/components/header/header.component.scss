@@ -3,19 +3,18 @@
   background-color: var(--app-primary);
   border-bottom: 1px solid var(--app-primary-strong);
   display: flex;
+  gap: 16px;
   height: 60px;
   justify-content: space-between;
+  padding: 0 16px;
   transition: background-color 0.25s ease, border-color 0.25s ease;
   width: 100%;
-}
-
-.topbar:last-child {
-  text-align: end;
-  padding-right: 15px;
+  box-sizing: border-box;
 }
 
 .toggle {
   cursor: pointer;
+  flex: 0 0 auto;
 }
 
 .toggle-icon {
@@ -29,9 +28,14 @@
   color: var(--app-on-primary);
 }
 
+.title h1 {
+  font-size: 1.75rem;
+  line-height: 1;
+  margin: 0;
+}
+
 .header--dropdown {
   min-width: 220px;
-  padding-top: 8px;
 }
 
 .header--label {
@@ -45,23 +49,47 @@
   background: var(--app-surface-muted);
   border-color: var(--app-border);
   color: var(--app-text);
+  width: 100%;
 }
 
 /* Responsive design */
 @media (max-width: 480px) {
+  .topbar {
+    align-items: center;
+    display: grid;
+    gap: 8px 12px;
+    grid-template-columns: 44px minmax(0, 1fr);
+    height: auto;
+    padding: 14px 12px 12px;
+  }
+
+  .title h1 {
+    font-size: 1.5rem;
+  }
+
   .header--dropdown {
-    padding-top: 0;
+    grid-column: 1 / -1;
+    min-width: 0;
+    width: 100%;
+  }
+
+  .header--label {
+    font-size: 0.75rem;
+    margin-bottom: 4px;
+    padding-left: 2px;
+  }
+
+  :host ::ng-deep .header--dropdown .p-select {
+    min-height: 42px;
   }
 
   .toggle {
+    align-self: start;
     z-index: 1000;
   }
 
-  .topbar {
-    align-items: initial;
-    flex-direction: column;
-    gap: 8px;
-    height: auto;
-    padding-bottom: 150px;
+  .toggle-icon {
+    font-size: 32px;
+    width: 32px;
   }
 }

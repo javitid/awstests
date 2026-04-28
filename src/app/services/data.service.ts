@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { FormGroup } from '@angular/forms';
 import { collection, getDocs } from 'firebase/firestore';
 import { Observable, from, throwError } from 'rxjs';
 import { catchError, map, shareReplay } from 'rxjs/operators';
@@ -7,8 +6,6 @@ import { catchError, map, shareReplay } from 'rxjs/operators';
 import { QUESTIONARIES } from '../config/constants';
 import { Question, Questions } from '../interfaces/Question';
 import { getFirebaseFirestoreInstance } from '../config/firebase.config';
-
-let questionsForm = new FormGroup({});
 
 @Injectable({
   providedIn: 'root'
@@ -51,13 +48,5 @@ export class DataService {
 
   setHttpError(error: unknown): void {
     this.httpError = error;
-  }
-
-  getQuestionsForm(): FormGroup {
-    return questionsForm;
-  }
-
-  setQuestionsForm(formGroup: FormGroup): void {
-    questionsForm = formGroup;
   }
 }

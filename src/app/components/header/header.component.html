@@ -11,8 +11,8 @@
       <label class="header--label" for="section-filter">Section filter</label>
       <p-select
         inputId="section-filter"
-        [options]="SECTION"
-        [(ngModel)]="filterName"
+        [options]="quizState.sections()"
+        [ngModel]="quizState.selectedSection()"
         (onChange)="setFilter($event)"
         appendTo="body">
       </p-select>
@@ -25,7 +25,7 @@
       <p-select
         inputId="questionary-select"
         [options]="QUESTIONARIES"
-        [(ngModel)]="questionaryName"
+        [ngModel]="quizState.selectedQuestionary()"
         (onChange)="getSelectedQuestionary($event)"
         appendTo="body">
       </p-select>
